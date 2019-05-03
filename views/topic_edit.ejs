@@ -1,0 +1,217 @@
+<script src="/js/cacheJS.js"></script>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $("#wrapper-main").on('click', '#submitTopic', function ()
+        {
+            var tagsToAdd = [];
+            $(".tag-input-hidden").each(function () {
+                if ($(this).val() == "1")
+                {
+                    tagsToAdd.push($(this).attr("id"))
+                }
+            })
+
+            $.ajax({
+                url: '/redigera-inlagg',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    title: $('#topic_title').val(),
+                    content: $('.ql-editor').html(),
+                    post_id: '<%= currentPost %>',
+                    tags: tagsToAdd
+                }),
+                error: function (data)
+                {
+                },
+
+                success: function (data)
+                {
+                    $('#topic_title_error').text("");
+                    $('#topic_content_error').text("");
+                    if (data.code == 200)
+                    {
+                        window.location.replace("/inlagg/" + data.url);
+                        cacheJS.removeByKey({editTopic: <%= currentPost %>, type: 'view'});
+                    }
+                    else if (data.title || data.content)
+                    {
+                        if (data.title)
+                        {
+                            $('#topic_title_error').text(data.title);
+                        }
+                        if (data.content)
+                        {
+                            $('#topic_content_error').text(data.content);
+                        }
+                    }
+                    else
+                    {
+                        // :/
+                    }
+                }
+            });
+        });
+
+        $("#wrapper-main").on('click', '.tag-false', function ()
+        {
+            var tagID = $(this).attr("id");
+            $(this).css("display", "none");
+            var hiddenID = tagID.replace("false", "hidden");
+            var trueID = tagID.replace("false", "true");
+
+            $("#" + hiddenID).val(1);
+
+            $("#" + trueID).css("display", "inline-block");
+        });
+
+        $("#wrapper-main").on('click', '.tag-true', function ()
+        {
+            if (!$(this).hasClass("tag-disable-hover"))
+            {
+                var tagID = $(this).attr("id");
+                $(this).css("display", "none");
+                var hiddenID = tagID.replace("true", "hidden");
+                var falseID = tagID.replace("true", "false");
+
+                $("#" + hiddenID).val(0);
+
+                $("#" + falseID).css("display", "inline-block");
+            }
+        });
+    });
+</script>
+    <div id="edit-before-wrapper">
+        <h6 id="edited-before">Sidan har laddat in en tidigare, redigerad version av denna post som inte skickades in. Klicka återställ om du istället vill se originalet.</h6>
+        <h6 id="edited-before">Varning, om du återställer så kommer den tidigare redigeringen som visas nedan att skrivas över!</h6>
+        <div id="edited-before-choice-wrapper">
+            <button id="edit-load-yes">ÅTERSTÄLL</button>
+        </div>
+
+    </div>
+    <h1 id="topic_title_error" <% if (!editTopic) { %>style="display: none;"<% } %>></h1>
+    <input id="topic_title" value="<%= title %>" placeholder="Passande titel för tråden..." <% if (!editTopic) { %>style="display: none;"<% } %>>
+    <h1 id="topic_content_error"></h1>
+    <div id="editor-wrapper">
+        <div id="editor">
+        </div>
+    </div>
+    <h5 id="tags-title" <% if (!editTopic) { %>style="display: none;"<% } %>>TAGGAR</h5>
+    <div class="tag-wrapper" <% if (!editTopic) { %>style="display: none;"<% } %>>
+        <%
+        for (var j = 0; j < allTags.length; j++)
+        {
+        %>
+        <span class="tag tag-false" id="tag-id-false-<%= allTags[j].tag_id %>" style="<% if (arrayContainsTag(currentTags, allTags[j])) { %>display: none; <% } %>cursor: pointer; background-color: <%= allTags[j].tag_bg_color %>; color: <%= allTags[j].tag_text_color %>;"><i class="fa fa-check" aria-hidden="true"></i> <%= allTags[j].tag_text %></span>
+        <input type="hidden" class="tag-input-hidden" id="tag-id-hidden-<%= allTags[j].tag_id %>" name="tag-id-<%= allTags[j].tag_id %>" value="<% if (arrayContainsTag(currentTags, allTags[j])) { %>1<% } else { %>0<% } %>" />
+        <%
+        }
+        %>
+    </div>
+    <button id="submitTopic">UPPDATERA</button>
+
+    <div id="topic">
+        <div id="breadcrumb">
+            <a href="/forum">Forum</a>
+            <% for (var i = directory.length - 1; i >= 0; i--) {
+                var key = Object.keys(directory[i]);
+                var value = Object.keys(directory[i]).map(function (key)
+                {
+                    return directory[i][key];
+                });
+            %>
+            <span class="breadcrumb-separator"> > </span>
+            <a href="<%= '/forum/' + encodeURIComponent(customURLEncode(value[0])) + "-" + key[0] %>"><%= value[0] %></a>
+            <% } %>
+        </div>
+        <h1 id="topic-title"><%= title %></h1>
+        <div class="tag-wrapper">
+            <%
+            for (var j = 0; j < allTags.length; j++)
+            {
+            %>
+            <span class="tag tag-true <% if (!editTopic) { %>tag-disable-hover<% } %>" id="tag-id-true-<%= allTags[j].tag_id %>" style="<% if (!arrayContainsTag(currentTags, allTags[j])) { %>display: none; <% } %> <% if (editTopic) { %>cursor: pointer;<% } %> background-color: <%= allTags[j].tag_bg_color %>; color: <%= allTags[j].tag_text_color %>;"><i class="fa fa-times" aria-hidden="true"></i> <%= allTags[j].tag_text %></span></span>
+            <%
+            }
+            %>
+        </div>
+        <div class="post-wrapper">
+            <div class="post-user">
+                <img src="/uploads/profile-pictures/<%= session.user.user_id %>.png" >
+                <div class="post-user-top-wrapper">
+                    <div class="post-user-top-wrapper-upper">
+                        <a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(session.user.username)) + "-" + session.user.user_id %>"><%= session.user.username %></a>
+                        <% for (var j = 0; j < session.user.groups.length; j++) { %>
+                        <h3 style="background-color: <%= session.user.groups[j].color %>"><%= session.user.groups[j].name %></h3>
+                        <% } %>
+                    </div>
+                    <div class="post-user-top-wrapper-under">
+                        <h4>Medlem i <%= moment(session.user.user_register_date).fromNow(true); %></h4>
+                        <span class="post-user-top-wrapper-under-separator">, </span>
+                        <h4><%= session.user.user_total_posts %> inlägg</h4>
+                    </div>
+                </div>
+                <div class="post-user-bot-wrapper">
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="like" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_like %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="agree" class="fa fa-check" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_agree %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="insightful" class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_insightful %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="promote" class="fa fa-star-o" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_promote %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="post-content ql-editor"></div>
+            </div>
+            <div class="post-signature">
+                ASDASDASDSA
+            </div>
+        </div>
+    </div>
+
+<script src="/js/quill.min.js"></script>
+<script src="/js/quill-standard-layout.js"></script>
+<script>
+    var cachedContent = null;
+    if (cacheJS.get({editTopic: <%= currentPost %>, type: 'view'}) != null) {
+	    cachedContent = cacheJS.get({editTopic: <%= currentPost %>, type: 'view'}).replace(/(?:\r\n|\r|\n)/g, '<br class="temp">');
+    }
+    var originalContent = '<%- content.replace(/(?:\r\n|\r|\n)/g, '<br class="temp">'); %>';
+    if (cachedContent != null && cachedContent !== originalContent)
+    {
+        $("#edit-before-wrapper").show();
+        $("#editor .ql-editor").html(cachedContent.replace(/<br class="temp">/g, "\n"));
+    }
+    else
+    {
+        $(quill.root).html(originalContent.replace(/<br class="temp">/g, "\n"));
+    }
+
+    $("#wrapper-main").on('click', '#edit-load-yes', function ()
+    {
+	    $(quill.root).html(originalContent.replace(/<br class="temp">/g, "\n"));
+        $("#edit-before-wrapper").hide();
+    });
+
+    quill.on('text-change', function (delta, oldDelta, source)
+    {
+        $(".post-content").html($(".ql-editor").html());
+        cacheJS.set({editTopic: <%= currentPost %>, type: 'view'}, $("#editor .ql-editor").html());
+    });
+
+    $('#topic_title').on('input', function ()
+    {
+        $('#topic-title').text($('#topic_title').val());
+    });
+</script>

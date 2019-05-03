@@ -1,0 +1,101 @@
+#servers-wrapper > h1 {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+  margin: 0;
+}
+#servers-wrapper h5 {
+  font-size: 18px;
+  color: #C0392B;
+  padding: 20px 0;
+  margin: 0;
+  font-weight: 300;
+  text-align: center;
+}
+#servers-wrapper .server-item {
+  display: block;
+  margin: 0 auto 40px auto;
+  width: 660px;
+  box-sizing: border-box;
+  border: 2px solid #E6E6E6;
+  font-size: 0;
+  padding: 8px;
+}
+@media only screen and (max-width : 1400px) {
+  #servers-wrapper .server-item {
+    width: 80%;
+  }
+}
+@media only screen and (max-width : 1079px) {
+  #servers-wrapper .server-item {
+    width: 100%;
+  }
+}
+#servers-wrapper .server-item h1 {
+  padding: 0 0 5px 0;
+  margin: 0;
+  color: #2C3E50;
+  font-size: 22px;
+  font-weight: 300;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#servers-wrapper .server-item h2 {
+  padding: 5px 0;
+  margin: 0;
+  color: #2C3E50;
+  font-size: 18px;
+  font-weight: 300;
+}
+#servers-wrapper .server-item h2 span.server-offline {
+  color: #C0392B;
+}
+#servers-wrapper .server-item h3 {
+  padding: 5px 0;
+  margin: 0;
+  color: #2C3E50;
+  font-size: 18px;
+  font-weight: 300;
+}
+#servers-wrapper .server-item h4 {
+  padding: 5px 0;
+  margin: 0;
+  color: #2C3E50;
+  font-size: 16px;
+  font-weight: 300;
+}
+#servers-wrapper .server-item .server-item-inner-upper {
+  display: inline-block;
+  width: 50%;
+  vertical-align: middle;
+}
+#servers-wrapper .server-item .server-item-inner-lower {
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+}
+#servers-wrapper .server-item .server-item-inner-lower a {
+  font-family: "Roboto", Calibri, Arial;
+  background-color: #27AE60;
+  padding: 10px;
+  font-size: 18px;
+  color: #ECF0F1;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-decoration: none;
+  border-radius: 5px;
+}
+#servers-wrapper .server-item .server-item-inner-lower a:hover {
+  filter: brightness(110%);
+  transition: all ease 0.5s;
+}
+#servers-wrapper .server-item .server-item-inner-lower a.server-offline {
+  cursor: default;
+  pointer-events: none;
+  background-color: #747474;
+}

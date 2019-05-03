@@ -1,0 +1,22 @@
+<div id="stafflist-wrapper">
+    <% for (var i = 0; i < groups.length; i++) { %>
+        <% if (users[i].length > 0) { %>
+            <h1><%= groups[i].name.toUpperCase() %></h1>
+            <% for (var j = 0; j < users[i].length; j++) { %>
+                <div class="staff-user">
+                    <img src="/uploads/profile-pictures/<%= users[i][j].user_id %>.png">
+                    <div class="staff-user-inner">
+                        <div class="staff-user-name-wrapper">
+                            <a href="/anvandare/<%= users[i][j].username %>-<%= users[i][j].user_id %>"><%= users[i][j].username %></a>
+                        </div>
+                        <div class="staff-user-groups">
+                            <% for (var k = 0; k < users[i][j].groups.length; k++) { %>
+                                <h3 style="background-color: <%= users[i][j].groups[k].color %>"><%= users[i][j].groups[k].name %></h3>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    <% } %>
+</div>

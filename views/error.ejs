@@ -1,0 +1,7 @@
+<div id="error-wrapper">
+    <h1>ERROR</h1>
+    <h2>HTTP-statuskod: <%= status %></h2>
+    <% if (typeof message !== "undefined" || message !== "") { %>
+    <pre><h3><%= message %></h3></pre>
+    <% } %>
+</div>

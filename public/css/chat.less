@@ -1,0 +1,304 @@
+@import "functions";
+@import "colors";
+
+#chat
+{
+    margin: 40px 0 40px 0;
+    font-size:  0;
+    overflow-x: hidden;
+    > h1
+    {
+        .head-divider();
+    }
+
+    > h4#chat_submit_error
+    {
+        color:       @pomegranate-color;
+        padding:     0;
+        margin:      0;
+        font-size:   12px;
+        font-weight: 300;
+    }
+
+    textarea
+    {
+        width:              ~"calc(100% - 24px)";
+        -webkit-box-shadow: none;
+        -moz-box-shadow:    none;
+        box-shadow:         none;
+        outline:            none;
+        border:             2px solid #E6E6E6;
+        border-radius:      4px 0 0 4px;
+        display:            inline-block;
+        box-sizing:         border-box;
+        vertical-align:     top;
+        margin:             10px 0 0 0;
+        resize:             none;
+        height:             24px;
+        font-size:          14px;
+        overflow-y:         hidden;
+    }
+
+    i.fa-share
+    {
+        display:          inline-block;
+        font-size:        20px;
+        color:            #FFFFFF;
+        margin:           10px 0 0 0;
+        padding:          2px 2px;
+        border-radius:    0 4px 4px 0;
+        background-color: #2C3E50;
+        cursor:           pointer;
+    }
+
+    #chat-inner
+    {
+        display:    block;
+        height:     400px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        .chat-message
+        {
+            font-size:     0;
+            border-bottom: 1px solid #E6E6E6;
+            padding:       0 0 5px 0;
+            margin:        0 0 5px 0;
+            position:      relative;
+
+            &:last-of-type
+            {
+                padding: 0;
+                margin:  0;
+            }
+
+            .ban-user-wrapper
+            {
+                display: none;
+                margin:  0 5px;
+
+                h2
+                {
+                    color:       @pomegranate-color;
+                    padding:     0;
+                    margin:      0;
+                    font-size:   12px;
+                    font-weight: 300;
+                }
+
+                p
+                {
+                    font-size: 12px;
+                    display:   inline-block;
+                    width:     130px;
+                    padding:   0;
+                    margin:    0;
+                }
+                input
+                {
+                    text-align:    center;
+
+                    border-radius: 5px;
+                    border:        1px solid #9B9B9B;
+                    box-sizing:    border-box;
+                    margin:        0 10px;
+                    box-shadow:    none;
+                    display:       inline-block;
+                    width:         ~"calc(100% - 150px)";
+                }
+
+                .chat-ban-confirm
+                {
+                    background-color: @agree-color;
+                    width:            50%;
+                    font-size:        16px;
+                    display:          inline-block;
+                    margin:           5px 0;
+                    border-radius:    5px 0 0 5px;
+                    text-align:       center;
+                    color:            #FFFFFF;
+                    cursor:           pointer;
+                }
+
+                .chat-ban-abort
+                {
+                    background-color: @pomegranate-color;
+                    width:            50%;
+                    font-size:        16px;
+                    display:          inline-block;
+                    margin:           5px 0;
+                    border-radius:    0 5px 5px 0;
+                    text-align:       center;
+                    color:            #FFFFFF;
+                    cursor:           pointer;
+                }
+            }
+
+            .edit-message-wrapper
+            {
+                display: none;
+                textarea
+                {
+                    width: 100%;
+                    border-radius: 0;
+                    margin: 0;
+                    box-sizing: border-box;
+                }
+
+                h2
+                {
+                    color:       @pomegranate-color;
+                    padding:     0;
+                    margin:      0;
+                    font-size:   12px;
+                    font-weight: 300;
+                }
+
+                .chat-edit-confirm
+                {
+                    background-color: @agree-color;
+                    width:            50%;
+                    font-size:        16px;
+                    display:          inline-block;
+                    margin:           5px 0;
+                    border-radius:    5px 0 0 5px;
+                    text-align:       center;
+                    color:            #FFFFFF;
+                    cursor:           pointer;
+                }
+
+                .chat-edit-abort
+                {
+                    background-color: @pomegranate-color;
+                    width:            50%;
+                    font-size:        16px;
+                    display:          inline-block;
+                    margin:           5px 0;
+                    border-radius:    0 5px 5px 0;
+                    text-align:       center;
+                    color:            #FFFFFF;
+                    cursor:           pointer;
+                }
+            }
+
+            &:last-of-type
+            {
+                border: none;
+            }
+
+            img
+            {
+                vertical-align: top;
+                width:          40px;
+                height:         40px;
+                border-radius:  50%;
+                display:        inline-block;
+            }
+            .chat-user
+            {
+                width:   ~"calc(100% - 40px - 20px - 10px)";
+                height:  40px;
+                margin: 0 0 0 10px;
+                display: inline-block;
+
+                a
+                {
+                    padding:         0;
+                    margin:          0;
+                    font-size:       12px;
+                    font-weight:     300;
+                    text-decoration: none;
+                }
+
+                h2
+                {
+                    padding:     0;
+                    margin:      0;
+                    font-size:   12px;
+                    font-weight: 300;
+                }
+
+                &.chat-banned-user
+                {
+                    h2, a
+                    {
+                        text-decoration: line-through;
+                    }
+                }
+            }
+
+            .fa-angle-double-left
+            {
+                display:        inline-block;
+                width:          20px;
+                font-size:      18px;
+                padding-bottom: 1px;
+                vertical-align: top;
+                color:          #999999;
+                cursor:         pointer;
+                text-align:     center;
+                transition:     ease .5s;
+                &.rotate
+                {
+                    -webkit-transform: rotate(180deg);
+                    -moz-transform:    rotate(180deg);
+                    -o-transform:      rotate(180deg);
+                    -ms-transform:     rotate(180deg);
+                    transform:         rotate(180deg);
+                    transition:        ease .5s;
+
+                }
+            }
+
+            .chat-actions
+            {
+                display:  none;
+                position: absolute;
+                height:   40px;
+                top:      0;
+                right:    20px;
+
+                i
+                {
+                    font-size: 18px;
+                    color:     #999999;
+                    margin:    0 5px 0 0;
+                    cursor:    pointer;
+
+                    &.fa-pencil:hover
+                    {
+                        color: @edit-color;
+                    }
+                    &.fa-trash-o:hover
+                    {
+                        color: @trashcan-color;
+                    }
+                    &.fa-ban:hover
+                    {
+                        color: @ban-color;
+                    }
+                }
+
+                &.display-chat-actions
+                {
+                    display: inline-block;
+                }
+            }
+
+            .chat-message-message
+            {
+                font-size:   14px;
+                padding:     0;
+                margin:      0;
+                font-weight: 300;
+                height: auto;
+                width: 100%;
+                white-space: pre-wrap;
+                white-space: -moz-pre-wrap;
+                white-space: -pre-wrap;
+                white-space: -o-pre-wrap;
+                word-wrap: break-word;
+            }
+        }
+    }
+}

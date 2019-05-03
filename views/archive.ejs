@@ -1,0 +1,77 @@
+<div id="breadcrumb">
+    <a href="/forum">Forum</a>
+    <span class="breadcrumb-separator"> > </span>
+    <a href=""><% if (archiveType === "posts") { %>Trådar med raderade inlägg<% } else { %>Trådar<% } %></a>
+</div>
+<div id="topics">
+    <div id="topics-head">
+        <h3>Arkiv - <% if (archiveType === "posts") { %>Trådar med raderade inlägg<% } else { %>Trådar<% } %></h3>
+    </div>
+    <%
+    if (topics.length == 0)
+    {
+    %>
+    <div class="topic">
+        <h5>Inga trådar kunde hittas i denna kategori.</h5>
+    </div>
+    <%
+    }
+    else
+    {
+    for (var i = 0; i < topics.length; i++)
+    {
+    %>
+    <div class="topic <% if (typeof session.user !== "undefined" && topics[i].user_last_read_post != topics[i].topic_last_post_id) {%>not-read<%}%>">
+        <div class="creator">
+            <img src="/uploads/profile-pictures/<%= topics[i].topic_creator_id %>.png" >
+            <div class="creator-inner">
+                <% if (archiveType !== "posts") { %>
+                <div class="title"><a href="<%= '/trad/' + encodeURIComponent(customURLEncode(topics[i].topic_title)) + "-" + topics[i].topic_id %>"><% if (topics[i].topic_sticky) { %><i class="fa fa-thumb-tack" aria-hidden="true"></i><% } %><% if (topics[i].topic_locked) { %><i class="fa fa-lock" aria-hidden="true"></i><% } %><%= topics[i].topic_title %></a></div>
+                <% } else { %>
+                <div class="title"><a href="<%= '/arkiv/inlagg/' + encodeURIComponent(customURLEncode(topics[i].topic_title)) + "-" + topics[i].topic_id %>"><% if (topics[i].topic_sticky) { %><i class="fa fa-thumb-tack" aria-hidden="true"></i><% } %><% if (topics[i].topic_locked) { %><i class="fa fa-lock" aria-hidden="true"></i><% } %><%= topics[i].topic_title %></a></div>
+                <% } %>
+                <div class="author">
+                    <a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(topics[i].topic_creator_username)) + "-" + topics[i].topic_creator_id%>"><%= topics[i].topic_creator_username %></a> <p>| <%= timeToPrint(topics[i].topic_creation_date) %> |</p><a href="<%= '/forum/' + encodeURIComponent(customURLEncode(topics[i].board_title)) + "-" + topics[i].topic_board_id%>"><%= topics[i].board_title %></a>
+                    <% if (topics[i].topic_tags != 0)
+                    {
+                    for (var j = 0; j < topics[i].topic_tags.length; j++)
+                    {
+                    %>
+                    <span class="tag" style="background-color: <%= topics[i].topic_tags[j].tag_bg_color %>; color: <%= topics[i].topic_tags[j].tag_text_color %>;"><%= topics[i].topic_tags[j].tag_text %></span>
+                    <%
+                    }
+                    }
+                    %>
+                </div>
+            </div>
+        </div>
+        <p class="answers"><i class="fa fa-comments" aria-hidden="true"></i> <%= topics[i].topic_posts %></p>
+        <p class="views"><i class="fa fa-eye" aria-hidden="true"></i> <%= topics[i].topic_views %></p>
+        <div class="latest-poster">
+            <div class="latest-poster-inner">
+                <p class="latest-poster-user"><a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(topics[i].topic_last_user_posted_username)) + "-" + topics[i].topic_last_user_posted_id%>"><%= topics[i].topic_last_user_posted_username %></a></p>
+                <p class="latest-poster-datetime"><%= timeToPrint(topics[i].topic_last_post_date) %></p>
+            </div>
+            <img src="/uploads/profile-pictures/<%= topics[i].topic_last_user_posted_id %>.png" >
+        </div>
+    </div>
+    <%
+    }
+    %>
+    <div id="pagination">
+        <% if (paginator.has_previous_page) { %>
+        <a class="big" href="/arkiv/tradar/sida- + (paginator.previous_page) %>">FÖREGÅENDE</a>
+        <% } %>
+
+        <% for (var i = paginator.first_page; i <= paginator.last_page; i++) { %>
+        <a class="small<% if (i == currentPage) { %> active<% } %>" href="/arkiv/tradar/sida-<%= i %>"><%= i %></a>
+        <% } %>
+
+        <% if (paginator.has_next_page) { %>
+        <a class="big" href="/arkiv/tradar/sida- + (paginator.next_page) %>">NÄSTA</a>
+        <% } %>
+    </div>
+    <%
+    }
+    %>
+</div>

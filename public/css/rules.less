@@ -1,0 +1,49 @@
+@import "functions";
+@import "colors";
+
+#rules-wrapper, #users_agreement_wrapper
+{
+    display: block;
+
+    @media @mediaL
+    {
+        box-sizing: border-box;
+        width:      100%;
+        padding:    0 20px 0 20px;
+    }
+
+    h3
+    {
+        .head-divider();
+        display: inline-block;
+    }
+
+    h4
+    {
+        .head-divider();
+        margin: 0 0 20px 0;
+
+        &:nth-of-type(2)
+        {
+            margin: 40px 0 20px 0;
+        }
+    }
+
+    h1
+    {
+        font-size:   20px;
+        font-weight: 300;
+        padding:     0;
+        margin:      0;
+        color:       @grey-1-color;
+    }
+
+    h2
+    {
+        font-size:   18px;
+        font-weight: 300;
+        padding:     0;
+        margin:      0 0 20px 0;
+        color:       @grey-2-color;
+    }
+}

@@ -1,0 +1,289 @@
+<script src="/js/sticky-kit.min.js"></script>
+<script src="/js/topic/sticky-kit-settings.js"></script>
+<script src="/js/topic/general.js"></script>
+
+<% if (typeof session.user !== "undefined" &&
+        (session.user.permissions.reactions_like ||
+                session.user.permissions.reactions_agree ||
+                session.user.permissions.reactions_insightful ||
+                session.user.permissions.reactions_promote))
+{ %>
+<script src="/js/topic/reactions.js"></script>
+<% } %>
+<% if (typeof session.user !== "undefined" && (session.user.permissions.post_hide_all || session.user.permissions.post_hide_own)) { %>
+<script src="/js/topic/delete.js"></script>
+<% } %>
+<% if (typeof session.user !== "undefined" && session.user.permissions.topic_sticky) { %>
+    <%- include(path + "/modules/topic/sticky") %>
+<% } %>
+<% if (typeof session.user !== "undefined" && session.user.permissions.topic_lock) { %>
+    <%- include(path + "/modules/topic/lock") %>
+<% } %>
+
+<div id="topic">
+    <div id="breadcrumb">
+        <a href="/forum">Forum</a>
+        <% for (var i = directory.length - 1; i >= 0; i--) {
+            var key = Object.keys(directory[i]);
+            var value = Object.keys(directory[i]).map(function (key)
+            {
+                return directory[i][key];
+            });
+        %>
+        <span class="breadcrumb-separator"> > </span>
+        <a href="<%= '/forum/' + encodeURIComponent(customURLEncode(value[0])) + "-" + key[0] %>"><%= value[0] %></a>
+        <% } %>
+    </div>
+    <h1 id="topic-title">
+        <% if (topic.topic_hidden) { %>
+        <i class="fa fa-trash-o" aria-hidden="true"></i>
+        <% } %>
+        <i class="fa fa-thumb-tack" aria-hidden="true" <% if (!topic.topic_sticky) { %>style="display: none;"<% } %>></i>
+        <i class="fa fa-lock" aria-hidden="true" <% if (!topic.topic_locked) { %>style="display: none;"<% } %>></i><%= topic.topic_title %>
+    </h1>
+    <% if (topic.topic_tags != 0) { %>
+    <div class="tag-wrapper">
+        <%
+        for (var i = 0; i < topic.topic_tags.length; i++)
+        {
+        %>
+        <span class="tag"
+              style="background-color: <%= topic.topic_tags[i].tag_bg_color %>; color: <%= topic.topic_tags[i].tag_text_color %>;"><%= topic.topic_tags[i].tag_text %></span>
+        <%
+        } %>
+    </div>
+    <% } %>
+    <% for (var i = 0; i < posts.length; i++) { %>
+    <div class="post-wrapper">
+        <div class="post-user">
+            <img src="/uploads/profile-pictures/<%= posts[i].post_user_id %>.png">
+            <div class="post-user-top-wrapper">
+                <div class="post-user-top-wrapper-upper">
+                    <a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(posts[i].post_username)) + "-" + posts[i].post_user_id %>"><%= posts[i].post_username %></a>
+                    <% for (var j = 0; j < posts[i].user_groups.length; j++) { %>
+                    <h3 style="background-color: <%= posts[i].user_groups[j].color %>"><%= posts[i].user_groups[j].name %></h3>
+                    <% } %>
+                </div>
+                <div class="post-user-top-wrapper-under">
+                    <h4>Medlem i <%= moment(posts[i].user_register_date).fromNow(true); %></h4>
+                    <span class="post-user-top-wrapper-under-separator">, </span>
+                    <h4><%= posts[i].user_total_posts %> inlägg</h4>
+                </div>
+            </div>
+            <div class="post-user-bot-wrapper">
+                <div class="post-user-reactions-container">
+                    <i reaction-type="like" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <p><%= posts[i].user_total_like %></p>
+                </div>
+                <div class="post-user-reactions-container">
+                    <i reaction-type="agree" class="fa fa-check" aria-hidden="true"></i>
+                    <p><%= posts[i].user_total_agree %></p>
+                </div>
+                <div class="post-user-reactions-container">
+                    <i reaction-type="insightful" class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    <p><%= posts[i].user_total_insightful %></p>
+                </div>
+                <div class="post-user-reactions-container">
+                    <i reaction-type="promote" class="fa fa-star-o" aria-hidden="true"></i>
+                    <p><%= posts[i].user_total_promote %></p>
+                </div>
+            </div>
+        </div>
+        <div class="post" id="inlagg-<%= posts[i].post_id %>">
+
+            <div class="post-content ql-editor"><%- posts[i].post_content %></div>
+
+            <div class="post-actions">
+                <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+                <div class="post-actions-inner">
+                    <% if (typeof session.user !== "undefined") { %>
+                    <% if (i == 0 && currentPage == 1) { %>
+                    <% if (posts[i].postData.editTopic) { %>
+                    <a href="/redigera-inlagg/<%= encodeURIComponent(customURLEncode(topic.topic_title)) %>-<%= posts[i].post_id %>"><i
+                                class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <% } else if (posts[i].postData.editPost) { %>
+                    <a href="/redigera-inlagg/<%= encodeURIComponent(customURLEncode(topic.topic_title)) %>-<%= posts[i].post_id %>"><i
+                                class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <% } %>
+                    <% if (session.user.permissions.topic_lock) { %>
+                    <i class="fa fa-lock" aria-hidden="true"></i>
+                    <% } %>
+                    <% if (session.user.permissions.topic_sticky) { %>
+                    <% if (topic.topic_sticky) { %>
+                    <i class="fa fa-thumb-tack <% if (topic.topic_sticky) { %>stickied<% } %>" aria-hidden="true"></i>
+                    <% } else { %>
+                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                    <% } %>
+                    <% } %>
+                    <% if (session.user.permissions.topic_move) { %>
+                    <i class="fa fa-exchange" aria-hidden="true"></i>
+                    <% } %>
+                    <% if (session.user.permissions.topic_hide_all || (topic.topic_creator_id == session.user.user_id && session.user.permissions.topic_hide_own && (session.user.permissions.topic_hide_own_time == 0 || (session.user.permissions.topic_hide_own_time > moment().diff(moment(topic.topic_creation_date), 'minutes'))))) { %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <% } %>
+                    <% } else { %>
+                    <% if (posts[i].postData.editPost) { %>
+                    <a href="/redigera-inlagg/<%= encodeURIComponent(customURLEncode(topic.topic_title)) %>-<%= posts[i].post_id %>"><i
+                                class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <% } %>
+                    <% if (session.user.permissions.post_hide_all || (posts[i].post_user_id == session.user.user_id && session.user.permissions.post_hide_own && (session.user.permissions.post_hide_own_time == 0 || (session.user.permissions.post_hide_own_time > moment().diff(moment(posts[i].post_datetime), 'minutes'))))) { %>
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    <% } %>
+                    <% } %>
+                    <% } %>
+                </div>
+            </div>
+
+            <div class="post-reactions">
+                <p class="post-datetime"><%= timeToPrint(posts[i].post_datetime) %>,
+                    klockan <%= moment(posts[i].post_datetime).format("HH:mm") %></p>
+                <i class="fa fa-smile-o<% if (typeof session.user !== "undefined" && session.user.user_id !== posts[i].post_user_id && (session.user.permissions.reactions_like || session.user.permissions.reactions_agree || session.user.permissions.reactions_insightful || session.user.permissions.reactions_promote)) { %> can-react<% } %>"
+                   aria-hidden="true"></i>
+                <div class="post-reactions-inner">
+
+                    <% if (posts[i].reactions.like.length > 0 || (typeof session.user !== "undefined" && session.user.permissions.reactions_like && session.user.user_id !== posts[i].post_user_id)) { %>
+                    <div class="post-reaction<% if (typeof session.user !== "undefined") { for (var j = 0; j < posts[i].reactions.like.length; j++) { if (posts[i].reactions.like[j].fpr_user_id == session.user.user_id) { %> has-reacted<% j = posts[i].reactions.like.length; }}} %> <% if (posts[i].reactions.like.length > 0) { %> has-reactions<% } %>">
+                        <p><%= posts[i].reactions.like.length %></p>
+                        <i reaction-type="like"
+                           class="fa fa-thumbs-o-up<% if (typeof session.user !== "undefined" && session.user.permissions.reactions_like && posts[i].post_user_id !== session.user.user_id) { %> can-react<% } %>"
+                           aria-hidden="true"></i>
+                        <div class="reaction-description">Gilla</div>
+                    </div>
+                    <% } %>
+                    <% if (posts[i].reactions.agree.length > 0 || (typeof session.user !== "undefined" && session.user.permissions.reactions_agree && session.user.user_id !== posts[i].post_user_id)) { %>
+                    <div class="post-reaction<% if (typeof session.user !== "undefined") { for (var j = 0; j < posts[i].reactions.agree.length; j++) { if (posts[i].reactions.agree[j].fpr_user_id == session.user.user_id) { %> has-reacted<% j = posts[i].reactions.agree.length; }}} %> <% if (posts[i].reactions.agree.length > 0) { %> has-reactions<% } %>">
+                        <p><%= posts[i].reactions.agree.length %></p>
+                        <i reaction-type="agree"
+                           class="fa fa-check<% if (typeof session.user !== "undefined" && session.user.permissions.reactions_agree && posts[i].post_user_id !== session.user.user_id) { %> can-react<% } %>"
+                           aria-hidden="true"></i>
+                        <div class="reaction-description">Instämmer</div>
+                    </div>
+                    <% } %>
+                    <% if (posts[i].reactions.insightful.length > 0 || (typeof session.user !== "undefined" && session.user.permissions.reactions_insightful && session.user.user_id !== posts[i].post_user_id)) { %>
+                    <div class="post-reaction<% if (typeof session.user !== "undefined") { for (var j = 0; j < posts[i].reactions.insightful.length; j++) { if (posts[i].reactions.insightful[j].fpr_user_id == session.user.user_id) { %> has-reacted<% j = posts[i].reactions.insightful.length; }}} %> <% if (posts[i].reactions.insightful.length > 0) { %> has-reactions<% } %>">
+                        <p><%= posts[i].reactions.insightful.length %></p>
+                        <i reaction-type="insightful"
+                           class="fa fa-graduation-cap<% if (typeof session.user !== "undefined" && session.user.permissions.reactions_insightful && posts[i].post_user_id !== session.user.user_id) { %> can-react<% } %>"
+                           aria-hidden="true"></i>
+                        <div class="reaction-description">Lärorikt</div>
+                    </div>
+                    <% } %>
+                    <% if (posts[i].reactions.promote.length > 0 || (typeof session.user !== "undefined" && session.user.permissions.reactions_promote && session.user.user_id !== posts[i].post_user_id)) { %>
+                    <div class="post-reaction<% if (typeof session.user !== "undefined") { for (var j = 0; j < posts[i].reactions.promote.length; j++) { if (posts[i].reactions.promote[j].fpr_user_id == session.user.user_id) { %> has-reacted<% j = posts[i].reactions.promote.length; }}} %> <% if (posts[i].reactions.promote.length > 0) { %> has-reactions<% } %>">
+                        <p><%= posts[i].reactions.promote.length %></p>
+                        <i reaction-type="promote"
+                           class="fa fa-star-o<% if (typeof session.user !== "undefined" && session.user.permissions.reactions_promote && posts[i].post_user_id !== session.user.user_id) { %> can-react<% } %>"
+                           aria-hidden="true"></i>
+                        <div class="reaction-description">Främja</div>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="post-signature">
+            ASDASDASDSA
+        </div>
+    </div>
+    <% } %>
+
+    <% if (typeof session.user !== "undefined" && canCreatePost) { %>
+
+    <div class="post-wrapper">
+        <div class="post-user">
+            <img src="/uploads/profile-pictures/<%= session.user.user_id %>.png">
+            <div class="post-user-top-wrapper">
+                <div class="post-user-top-wrapper">
+                    <div class="post-user-top-wrapper-upper">
+                        <a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(session.user.username)) + "-" + session.user.user_id %>"><%= session.user.username %></a>
+                        <% for (var j = 0; j < session.user.groups.length; j++) { %>
+                        <h3 style="background-color: <%= session.user.groups[j].color %>"><%= session.user.groups[j].name %></h3>
+                        <% } %>
+                    </div>
+                    <div class="post-user-top-wrapper-under">
+                        <h4>Medlem i <%= moment(session.user.user_register_date).fromNow(true); %></h4>
+                        <span class="post-user-top-wrapper-under-separator">, </span>
+                        <h4><%= session.user.user_total_posts %> inlägg</h4>
+                    </div>
+                </div>
+                <div class="post-user-bot-wrapper">
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="like" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_like %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="agree" class="fa fa-check" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_agree %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="insightful" class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_insightful %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="promote" class="fa fa-star-o" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_promote %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="post">
+            <div id="editor-wrapper" class="topic-editor-wrapper">
+                <div id="editor" class="post-content ql-editor">
+                </div>
+            </div>
+        </div>
+        <div class="post-signature">
+            ASDASDASDSA
+        </div>
+    </div>
+    <% } %>
+</div>
+
+<div id="pagination">
+    <% if (paginator.has_previous_page) { %>
+    <a class="big"
+       href="/trad/<%= encodeURIComponent(customURLEncode(topic.topic_title)) + "-" + topic.topic_id + "/sida-" + (paginator.previous_page) %>">FÖREGÅENDE</a>
+    <% } %>
+
+    <% for (var i = paginator.first_page; i <= paginator.last_page; i++) { %>
+    <a class="small<% if (i == currentPage || (i == paginator.first_page && currentPage == 0)) { %> active<% } %>"
+       href="/trad/<%= encodeURIComponent(customURLEncode(topic.topic_title)) + "-" + topic.topic_id + "/sida-" + i %>"><%= i %></a>
+    <% } %>
+
+    <% if (paginator.has_next_page) { %>
+    <a class="big"
+       href="/trad/<%= encodeURIComponent(customURLEncode(topic.topic_title)) + "-" + topic.topic_id + "/sida-" + (paginator.next_page) %>">NÄSTA</a>
+    <% } %>
+</div>
+<% if (typeof session.user !== "undefined" && canCreatePost) { %>
+
+<h1 id="post_content_error"></h1>
+
+<button id="submitNewTopicPost">SKAPA INLÄGG</button>
+
+<%- include(path + "/modules/topic/new") %>
+<script src="/js/quill.min.js"></script>
+<script src="/js/quill-standard-layout.js"></script>
+<script>
+
+    var cachedContent = cacheJS.get({topicID: <%= topic.topic_id %>, type: 'view'});
+    if (cachedContent != null)
+    {
+        $("#editor .ql-editor").html(cachedContent);
+        $(document.body).trigger("sticky_kit:recalc");
+    }
+
+    quill.on('text-change', function (delta, oldDelta, source)
+    {
+        $(document.body).trigger("sticky_kit:recalc");
+
+        if ($("#editor").html() == "<p><br></p>")
+        {
+            cacheJS.removeByKey({topicID: <%= topic.topic_id %>, type: 'view'});
+        }
+        else
+        {
+            cacheJS.set({topicID: <%= topic.topic_id %>, type: 'view'}, $("#editor .ql-editor").html());
+        }
+    });
+</script>
+<% } %>

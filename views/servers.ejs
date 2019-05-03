@@ -1,0 +1,17 @@
+<div id="servers-wrapper">
+    <h1>SERVRAR</h1>
+    <h5>Uppdateras var 60:e sekund internt. Refresha sidan för att få senaste info.</h5>
+    <% for (var i = 0; i < servers.length; i++) { %>
+    <div class="server-item">
+        <h1><%= servers[i].server_name %></h1>
+        <div class="server-item-inner-upper">
+            <h2><% if (servers[i].server_status == 0) { %><span class="server-offline">OFFLINE</span><% } else { %><%= servers[i].server_map %><% } %></h2>
+            <h3><% if (servers[i].server_status == 0) { %>-<% } else { %><%= servers[i].server_players_current %><%= servers[i].map %><% } %> / <%= servers[i].server_players_max %> spelare</h3>
+            <h4><%= locals.envVariables.serverFullDomain %>:<%= servers[i].server_port %></h4>
+        </div>
+        <div class="server-item-inner-lower">
+            <a <% if (servers[i].server_status == 0) { %>class="server-offline"<% } %> href="steam://connect/<%= locals.envVariables.serverFullDomain %>:<%= servers[i].server_port %>">SPELA</a>
+        </div>
+    </div>
+    <% } %>
+</div>

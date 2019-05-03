@@ -1,0 +1,11 @@
+#activate-account-wrapper {
+  display: flex !important;
+  justify-content: center;
+}
+#activate-account-wrapper h1 {
+  margin: 0;
+  padding: 0;
+  color: #747474;
+  font-weight: 300;
+  font-size: 24px;
+}

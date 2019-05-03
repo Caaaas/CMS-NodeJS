@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $("#wrapper-main").on('click', '.fa-thumb-tack', function ()
+        {
+            $.ajax({
+                url: '/sticky-trad',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    topic_id: '<%= topic.topic_id %>'
+                }),
+                error: function (data)
+                {
+                },
+
+                success: function (data)
+                {
+                    if (data.code == 200)
+                    {
+                        if (data.newStatus == false)
+                        {
+                            $("#topic-title .fa-thumb-tack").css("display", "none");
+                        }
+                        else if (data.newStatus == true)
+                        {
+                            $("#topic-title .fa-thumb-tack").css("display", "inline");
+                        }
+                    }
+                    else
+                    {
+                        // :/
+                    }
+                }
+            });
+        });
+    });
+</script>

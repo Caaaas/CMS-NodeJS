@@ -1,0 +1,52 @@
+<div id="chat">
+    <h1><i class="fa fa-comments" aria-hidden="true"></i> LIVE CHAT</h1>
+    <div id="chat-inner">
+        <% for (var i = 0; i < chat.length; i++) { %>
+        <div class="chat-message" id="chat-message-<%= chat[i].chat_id %>">
+            <div class="chat-user-wrapper" id="chat-user-<%= chat[i].chat_user_id %>">
+                <img src="/uploads/profile-pictures/<%= chat[i].chat_user_id %>.png" >
+
+                <div class="chat-user<% if (chat[i].chat_ban_user_id !== null) { %> chat-banned-user<% } %>">
+                    <a href="/anvandare/<%= chat[i].chat_username %>-<%= chat[i].chat_user_id %>" style="color: <%= chat[i].chat_user_primary_group_color %>"><%= chat[i].chat_username %></a>
+                    <h2><%= timeToPrint(chat[i].chat_datetime) %></h2>
+                </div>
+                <% if (typeof session.user !== "undefined" && (session.user.permissions.chat_ban || chat[i].deleteChat || chat[i].editChat)) { %>
+                <i class="fa fa-angle-double-left chat-action-selector" aria-hidden="true"></i>
+                <% } %>
+                <div class="chat-actions">
+                    <% if (typeof session.user !== "undefined" && session.user.permissions.chat_ban) { %><i class="fa fa-ban chat-ban" aria-hidden="true"></i><% } %>
+                    <% if (typeof session.user !== "undefined" && chat[i].deleteChat) { %><i class="fa fa-trash-o chat-delete" aria-hidden="true"></i><% } %>
+                    <% if (typeof session.user !== "undefined" && chat[i].editChat) { %><i class="fa fa-pencil chat-edit" aria-hidden="true"></i><% } %>
+                </div>
+            </div>
+
+            <% if (typeof session.user !== "undefined" && session.user.permissions.chat_ban) { %>
+                <div class="ban-user-wrapper">
+                    <h2></h2>
+                    <p>Längd avstängning (min): </p>
+                    <input type="text" class="chat-ban-time">
+                    <div class="chat-ban-confirm"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <div class="chat-ban-abort"><i class="fa fa-times" aria-hidden="true"></i></div>
+
+                </div>
+            <% } %>
+
+            <% if (typeof session.user !== "undefined" && (session.user.permissions.chat_edit_own ||  session.user.permissions.chat_edit_all)) { %>
+                <div class="edit-message-wrapper">
+                    <h2></h2>
+                    <textarea class="chat_edit_message" placeholder="Redigera ditt meddelande..." maxlength="140"><%= chat[i].chat_message %></textarea>
+                    <div class="chat-edit-confirm"><i class="fa fa-check" aria-hidden="true"></i></div>
+                    <div class="chat-edit-abort"><i class="fa fa-times" aria-hidden="true"></i></div>
+                </div>
+            <% } %>
+
+            <div class="chat-message-message"><%= chat[i].chat_message %></div>
+        </div>
+        <% } %>
+    </div>
+    <% if (typeof session.user !== "undefined" && session.user.permissions.chat_submit && chat.ban == 0) { %>
+        <h4 id="chat_submit_error"></h4>
+        <textarea id="chat_new_message" placeholder="Skriv ett meddelande..." maxlength="140"></textarea>
+        <i id="chat_new_message_submit" class="fa fa-share" aria-hidden="true"></i>
+    <% } %>
+</div>

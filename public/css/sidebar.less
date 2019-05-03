@@ -1,0 +1,142 @@
+@import "functions";
+@import "colors";
+
+#sidebar
+{
+    box-sizing:       border-box;
+    display:          inline-block;
+    width:            @sidebar-width;
+    float:            right;
+    padding:          0 40px 40px 40px;
+    background-color: @main-color;
+    font-size:        0;
+    margin-left:      auto;
+    border-left: 1px solid #e6e6e6;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    @media @mediaL
+    {
+        position:       fixed;
+        top:            0;
+        right:          -300px;
+        transition:     ease 0.5s;
+        height:         100%;
+        z-index:        5001;
+        padding-bottom: 60px;
+        overflow-y:     auto;
+        &.show
+        {
+            right: 0;
+        }
+    }
+
+    #sidebar-inner
+    {
+        padding-top: 40px;
+
+        @media @mediaL
+        {
+            position: relative;
+        }
+    }
+
+    h1
+    {
+        .head-divider();
+        margin: 0 0 10px 0;
+    }
+
+    img
+    {
+        width:         40px;
+        height:        40px;
+        border-radius: 20px;
+        display:       inline-block;
+    }
+
+    h3
+    {
+        font-size:   14px;
+        font-weight: 300;
+        color:       @grey-1-color;
+    }
+
+    #selected-user-online
+    {
+        margin: 0 0 10px 0;
+        .user-online
+        {
+            display: block !important;
+            margin:0;
+
+            img
+            {
+                display: inline-block;
+            }
+
+            .user-online-data
+            {
+                display: inline-block;
+                padding: 0 0 0 10px;
+                width:          ~"calc(100% - 40px)";
+                vertical-align: top;
+                box-sizing: border-box;
+
+                a
+                {
+                    padding: 0;
+                    margin: 0;
+                    display: inline-block;
+                    text-decoration: none;
+                    color: @grey-2-color;
+                    font-size:   14px;
+                    font-weight: 300;
+
+                    &:hover
+                    {
+                        color: @gameonline-light-color;
+                    }
+                }
+
+                .group-wrapper
+                {
+                    display: block;
+                    h3
+                    {
+                        padding:   2px 5px;
+                        color:     @white-color;
+                        margin:    0 5px 5px 0;
+                        font-size: 12px;
+                        display:   inline-block;
+                    }
+                }
+            }
+        }
+    }
+
+    .user-online
+    {
+        display: inline-block;
+        margin:  0 5px 5px 5px;
+
+        img
+        {
+            cursor: pointer;
+        }
+
+        .user-online-data
+        {
+            display:        none;
+        }
+
+        #members-online, #staff-online, #directors-online
+        {
+            padding-bottom: 20px;
+        }
+    }
+}

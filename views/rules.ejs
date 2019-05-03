@@ -1,0 +1,13 @@
+<div id="rules-wrapper">
+    <% if (group == "servrar") { %>
+    <%- include(path + "/modules/rules/servrar") %>
+    <% } %>
+
+    <% if (group == "forum") { %>
+    <%- include(path + "/modules/rules/forum") %>
+    <% } %>
+
+    <% if (group == "teamspeak") { %>
+    <%- include(path + "/modules/rules/teamspeak") %>
+    <% } %>
+</div>

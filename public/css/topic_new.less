@@ -1,0 +1,79 @@
+@import "functions";
+@import "colors";
+
+.content_topic_new
+{
+    margin-top: 40px !important;
+
+    #topic-title
+    {
+        min-height: 40px;
+    }
+}
+
+#topic_title
+{
+    width: 100%;
+    padding:    10px;
+    margin:     0 auto 20px auto;
+    display:    block;
+    border:     1px solid #CCCCCC;
+    box-sizing: border-box;
+}
+
+#editor-wrapper
+{
+    min-height: 250px;
+    height:     auto;
+
+    @media @mediaM
+    {
+        min-height: 100px;
+    }
+
+    #editor
+    {
+        min-height: 250px;
+        height:     auto;
+
+        @media @mediaM
+        {
+            min-height: 100px;
+        }
+
+        .ql-editor
+        {
+            min-height: 250px;
+            height:     auto;
+
+            @media @mediaM
+            {
+                min-height: 100px;
+            }
+        }
+    }
+}
+
+#submitTopic
+{
+    .button(@emerald-color, @white-color);
+    width: 100%;
+    margin: 20px 0;
+}
+
+#tags-title
+{
+    width:       100%;
+    box-sizing:  border-box;
+    font-size:   16px;
+    font-weight: 300;
+    .head-divider();
+}
+
+#topic_title_error, #topic_content_error
+{
+    padding:   10px 0;
+    margin: 0;
+    color:     @pomegranate-color;
+    font-size: 18px;
+}

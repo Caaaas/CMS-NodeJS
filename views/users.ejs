@@ -1,0 +1,25 @@
+<div id="users-wrapper">
+    <div id="user-wrap-top">
+        <div id="user-left">
+            <img src="/uploads/profile-pictures/<%= user.user_id %>.png" >
+        </div>
+        <div id="user-right">
+            <h1><%= user.username %></h1>
+            <% for (var i = 0; i < groups.length; i++) { %>
+            <h2 style="background-color: <%= groups[i].color %>"><%= groups[i].name %></h2>
+            <% } %>
+            <h3>Medlem i <%= moment(user.user_register_date).fromNow(true); %></h3>
+        </div>
+    </div>
+    <div id="user-wrap-bot">
+        <h1>STATISTIK</h1>
+        <div id="user-left">
+            <p><span><%= user.user_total_topics %></span> trådar</p>
+            <p><span><%= user.user_total_posts %></span> inlägg</p>
+            <p><span><%= user.user_total_like %></span> gillade reaktioner</p>
+            <p><span><%= user.user_total_agree %></span> samtyckna reaktioner</p>
+            <p><span><%= user.user_total_insightful %></span> insiktsfulla reaktioner</p>
+            <p><span><%= user.user_total_promote %></span> biddragande reaktioner</p>
+        </div>
+    </div>
+</div>

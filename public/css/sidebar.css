@@ -1,0 +1,115 @@
+#sidebar {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 300px;
+  float: right;
+  padding: 0 40px 40px 40px;
+  background-color: #FFFFFF;
+  font-size: 0;
+  margin-left: auto;
+  border-left: 1px solid #e6e6e6;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+@media only screen and (max-width : 1400px) {
+  #sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    transition: ease 0.5s;
+    height: 100%;
+    z-index: 5001;
+    padding-bottom: 60px;
+    overflow-y: auto;
+  }
+  #sidebar.show {
+    right: 0;
+  }
+}
+#sidebar #sidebar-inner {
+  padding-top: 40px;
+}
+@media only screen and (max-width : 1400px) {
+  #sidebar #sidebar-inner {
+    position: relative;
+  }
+}
+#sidebar h1 {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+  margin: 0 0 10px 0;
+}
+#sidebar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: inline-block;
+}
+#sidebar h3 {
+  font-size: 14px;
+  font-weight: 300;
+  color: #747474;
+}
+#sidebar #selected-user-online {
+  margin: 0 0 10px 0;
+}
+#sidebar #selected-user-online .user-online {
+  display: block !important;
+  margin: 0;
+}
+#sidebar #selected-user-online .user-online img {
+  display: inline-block;
+}
+#sidebar #selected-user-online .user-online .user-online-data {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  width: calc(100% - 40px);
+  vertical-align: top;
+  box-sizing: border-box;
+}
+#sidebar #selected-user-online .user-online .user-online-data a {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  text-decoration: none;
+  color: #999999;
+  font-size: 14px;
+  font-weight: 300;
+}
+#sidebar #selected-user-online .user-online .user-online-data a:hover {
+  color: #009dff;
+}
+#sidebar #selected-user-online .user-online .user-online-data .group-wrapper {
+  display: block;
+}
+#sidebar #selected-user-online .user-online .user-online-data .group-wrapper h3 {
+  padding: 2px 5px;
+  color: #FFFFFF;
+  margin: 0 5px 5px 0;
+  font-size: 12px;
+  display: inline-block;
+}
+#sidebar .user-online {
+  display: inline-block;
+  margin: 0 5px 5px 5px;
+}
+#sidebar .user-online img {
+  cursor: pointer;
+}
+#sidebar .user-online .user-online-data {
+  display: none;
+}
+#sidebar .user-online #members-online,
+#sidebar .user-online #staff-online,
+#sidebar .user-online #directors-online {
+  padding-bottom: 20px;
+}

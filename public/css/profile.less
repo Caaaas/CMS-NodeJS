@@ -1,0 +1,323 @@
+@import "functions";
+@import "colors";
+
+.profile
+{
+    .uploader
+    {
+        position:   relative;
+        overflow:   hidden;
+        width:      80%;
+        max-width:  600px;
+        height:     200px;
+        background: #F3F3F3;
+        border:     4px dashed #E8E8E8;
+        margin:     0 auto;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+
+        &:hover
+        {
+            border-color: #3498DB;
+        }
+
+        &.activeHover
+        {
+            border-color: #3498DB;
+        }
+
+        #profile-picture-upload
+        {
+            position: absolute;
+            width:    100%;
+            height:   200px;
+            left:     0;
+            top:      0;
+            z-index:  2;
+            opacity:  0;
+            cursor:   pointer;
+        }
+    }
+
+    #crop-wrapper
+    {
+        display:   none;
+        width:     80%;
+        margin:    0 auto;
+        max-width: 600px;
+        height:    224px;
+
+        #crop-button-wrapper
+        {
+            height:         220px;
+            display:        inline-block;
+            vertical-align: top;
+            margin-top:     53px;
+
+            #picture-upload
+            {
+                cursor:           pointer;
+                display:          block;
+                padding:          13px 20px;
+                border:           1px solid #9B9B9B;
+                color:            #9B9B9B;
+                font-weight:      700;
+                font-size:        14px;
+                width:            140px;
+                letter-spacing:   3px;
+                transition:       all .1s ease-in-out;
+                background-color: transparent;
+                margin:           0 0 10px 0;
+
+                &:hover
+                {
+                    background: @agree-color;
+                    border:     1px solid @agree-color;
+                    color:      #FEFEFE;
+                }
+            }
+
+            #picture-upload-abort
+            {
+                vertical-align:   bottom;
+                cursor:           pointer;
+                display:          block;
+                padding:          13px 20px;
+                border:           1px solid #9B9B9B;
+                color:            #9B9B9B;
+                width:            140px;
+                font-weight:      700;
+                font-size:        14px;
+                letter-spacing:   3px;
+                transition:       all .1s ease-in-out;
+                background-color: transparent;
+
+                &:hover
+                {
+                    background: @pomegranate-color;
+                    border:     1px solid @pomegranate-color;
+                    color:      #FEFEFE;
+                }
+            }
+        }
+    }
+
+    h1
+    {
+        text-align:  center;
+        font-size:   24px;
+        line-height: 200px;
+        padding:     0;
+        font-weight: 300;
+        color:       @grey-1-color;
+
+        span
+        {
+            font-weight: bold;
+        }
+    }
+
+    h2
+    {
+        text-align:  center;
+        font-size:   24px;
+        padding:     0;
+        font-weight: 300;
+
+        &#upload-picture-success-message
+        {
+            color: @agree-color;
+        }
+
+        &#upload-picture-error-message
+        {
+            color: @pomegranate-color;
+        }
+    }
+
+    h6
+    {
+        .head-divider();
+        width:     80%;
+        max-width: 600px;
+        margin:  40px auto 20px auto;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+
+        &:first-of-type
+        {
+            margin:  0 auto 20px auto;
+        }
+    }
+
+    h3
+    {
+        color: #A0A0A0;
+        letter-spacing: 1.5px;
+        font-weight:300;
+        font-size: 14px;
+        display: block;
+        width: 80%;
+        max-width: 600px;
+        margin:    0 auto 5px auto;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+    }
+
+    h4
+    {
+        display: block;
+        width: 80%;
+        max-width: 600px;
+        margin:    0 auto 20px auto;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+
+        &#change-password-error
+        {
+            color: @pomegranate-color;
+        }
+        &#change-password-success
+        {
+            color: #2ecc71;
+
+        }
+    }
+
+    #steam-wrapper
+    {
+        display: block;
+        width: 80%;
+        max-width: 600px;
+        margin:    0 auto 20px auto;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+
+        img.steam-profile-picture
+        {
+            width: 100px;
+            height: auto;
+            border-radius: 50%;
+            display: inline-block;
+
+            @media @mediaXS
+            {
+                width: 70px;
+            }
+        }
+
+        .steam-user-info
+        {
+            display: inline-block;
+            vertical-align: top;
+            p
+            {
+                font-size: 18px;
+                margin: 26px 0 0 0;
+                .one-line-overflow();
+
+                @media @mediaXS
+                {
+                    margin: 0;
+                }
+            }
+
+            a
+            {
+                font-size: 18px;
+                display: block;
+                margin: 0 0 0 0;
+                color: @grey-2-color;
+                text-decoration: none;
+                &:hover
+                {
+                    color: @gameonline-light-color;
+                }
+            }
+        }
+
+        .steam-logout
+        {
+            .button(@pomegranate-color, @white-color);
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    }
+
+    input[type="text"], input[type="password"]
+    {
+        display: block;
+        width: 80%;
+        max-width: 600px;
+        margin:    0 auto 20px auto;
+        border: 1px solid #E6E6E6;
+        padding: 5px;
+        box-sizing: border-box;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+
+        &:focus
+        {
+            border-bottom: 2px solid #3498DB;
+        }
+    }
+
+    button#password-change-submit
+    {
+        .button(@grey-1-color, @white-color);
+        margin: 20px auto 0 auto;
+        width: 80%;
+        max-width: 600px;
+
+        @media @mediaS
+        {
+            width: 100%;
+        }
+
+        &:hover
+        {
+            background:    #333333;
+            border:        1px solid #333333;
+            color:         #FEFEFE;
+            border-radius: 30px;
+        }
+    }
+
+    .croppie-container
+    {
+        display:          inline-block;
+        margin:           0;
+        padding:          0;
+        width:            220px;
+        height:           220px;
+        background-color: transparent;
+
+        .cr-viewport
+        {
+            border:     2px solid #3498DB;
+            box-shadow: 0 0 2000px 2000px rgba(255, 255, 255, 1);
+        }
+    }
+
+
+}

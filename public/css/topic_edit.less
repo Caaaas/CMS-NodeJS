@@ -1,0 +1,65 @@
+@import "functions";
+@import "colors";
+
+.content_post_new
+{
+    margin: 40px auto !important;
+
+    #post_content_error
+    {
+        padding:   0;
+        margin:    0 0 0 80px;
+        color:     @pomegranate-color;
+        font-size: 18px;
+    }
+}
+
+#edit-before-wrapper
+{
+    display: none;
+    width:   100%;
+    margin:  0 auto;
+
+    @media @mediaL
+    {
+        width: ~"calc(100% - 40px)";
+    }
+    h6#edited-before
+    {
+        font-size:  16px;
+        color:      @pomegranate-color;
+        padding:    0;
+        margin:     0;
+        text-align: center;
+    }
+    #edited-before-choice-wrapper
+    {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        button#edit-load-yes
+        {
+            .button(@grey-1-color, @white-color);
+            margin:           20px auto 20px auto;
+            width:            200px;
+
+            @media @mediaXS
+            {
+                display: block;
+                width:   ~"calc(100% - 40px)";
+            }
+        }
+    }
+
+    h6#edited-before-warning
+    {
+        font-size:  16px;
+        color:      @pomegranate-color;
+        padding:    0;
+        margin:     0 0 20px 0;
+        text-align: center;
+        display:    block;
+        clear:      both;
+    }
+}

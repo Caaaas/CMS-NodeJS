@@ -1,0 +1,401 @@
+@import (inline) 'slick.css';
+@import (inline) 'font-awesome.min.css';
+@import (inline) 'quill.snow.css';
+@import "colors";
+@import "functions";
+@import "scrollbar";
+@import "sidemenu";
+@import "index";
+@import "sidebar";
+@import "forum";
+@import "login-register";
+@import "topic";
+@import "topic_new";
+@import "activate_account";
+@import "forgot_password";
+@import "post_new";
+@import "pagination";
+@import "croppie";
+@import "profile";
+@import "chat";
+@import "rules";
+@import "error";
+@import "top_bar";
+@import "topic_edit";
+@import "servers";
+@import "users";
+@import "cookies";
+@import "users_agreement";
+@import "tag";
+@import "stafflist";
+
+*
+{
+    font-family: "PT Sans", Calibri, Arial;
+}
+
+body, html
+{
+    padding: 0;
+    margin:  0;
+    height:  100%;
+}
+
+// Wrapper hela body // wrapper
+#wrapper
+{
+    padding-left: 300px;
+    .transition(0.5s, ease);
+    height:       100%;
+
+    @media @mediaM
+    {
+        padding-left: 0;
+    }
+}
+
+// Wrappar main + sidebar // content
+#wrapper-main-sidebar
+{
+    width:      100%;
+    position:   relative;
+    display:    flex;
+    min-height: 100%;
+
+    @media @mediaL
+    {
+        overflow: hidden;
+    }
+}
+
+// Wrapper main //
+#wrapper-main // main-content
+{
+    display:          inline-block;
+    max-width:        @main-content-max-width;
+    width:            ~"calc(100% - @{sidebar-width})";
+    background-color: @main-color;
+    padding:          40px 80px;
+    box-sizing:       border-box;
+
+    @media @mediaL
+    {
+        width: 100%;
+        padding: 40px 20px 40px 20px;
+    }
+
+    @media @mediaM
+    {
+        padding: 40px 20px 40px 20px;
+    }
+}
+
+.disable-overflow-y
+{
+    overflow-y: hidden;
+}
+
+.disable-overflow-x
+{
+    overflow-x: hidden;
+}
+
+.disable-overflow
+{
+    overflow: hidden;
+}
+
+.media-query-size
+{
+    display: none;
+    color:   #FFFFFF;
+
+    @media @mediaF
+    {
+        &.mediaF
+        {
+            color: red;
+        }
+
+        &.mediaL
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaM
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaXS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaC
+        {
+            color: #FFFFFF;
+        }
+    }
+
+    @media @mediaL
+    {
+        &.mediaF
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaL
+        {
+            color: red;
+        }
+
+        &.mediaM
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaXS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaC
+        {
+            color: #FFFFFF;
+        }
+    }
+
+    @media @mediaM
+    {
+        &.mediaF
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaL
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaM
+        {
+            color: red;
+        }
+
+        &.mediaS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaXS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaC
+        {
+            color: #FFFFFF;
+        }
+    }
+
+    @media @mediaS
+    {
+        &.mediaF
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaL
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaM
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaS
+        {
+            color: red;
+        }
+
+        &.mediaXS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaC
+        {
+            color: #FFFFFF;
+        }
+    }
+
+    @media @mediaXS
+    {
+        &.mediaF
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaL
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaM
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaXS
+        {
+            color: red;
+        }
+
+        &.mediaC
+        {
+            color: #FFFFFF;
+        }
+    }
+
+    @media @mediaC
+    {
+        &.mediaF
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaL
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaM
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaXS
+        {
+            color: #FFFFFF;
+        }
+
+        &.mediaC
+        {
+            color: red;
+        }
+    }
+}
+
+#disable-background
+{
+    position:         fixed;
+    top:              0;
+    left:             0;
+    background-color: #000000;
+    height:           100%;
+    width:            100%;
+    overflow:         hidden;
+    visibility:       hidden;
+    opacity:          0;
+    z-index:          -1;
+    transition:       all .5s ease-in-out;
+
+    &.show-overlay
+    {
+        opacity:    0.8;
+        visibility: visible;
+        z-index:    5000;
+        transition: all .5s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+#disable-background-menu
+{
+    position:         fixed;
+    top:              0;
+    left:             0;
+    background-color: #000000;
+    height:           100%;
+    width:            @sidemenu-width;
+    visibility:       hidden;
+    opacity:          0;
+    transition:       all .5s ease-in-out;
+    overflow:         hidden;
+
+    &.show-overlay
+    {
+        opacity:    0.8;
+        visibility: visible;
+        z-index:          5002;
+        transition: all .5s ease-in-out;
+        cursor: pointer;
+    }
+}
+
+a:focus, button:focus {
+    outline: 0 !important;
+}
+
+/*#topics
+{
+@media mediaS
+    .topic
+    {
+        .answers, .views
+        {
+            width: 0;
+        }
+
+        .creator
+        {
+            width: 64%;
+        }
+
+        .latest-poster
+        {
+            width: 36%;
+        }
+    }
+}*/
+
+/*
+    mediaXS
+    #topics
+    {
+        .topic
+        {
+            .creator
+            {
+                width: 100%;
+            }
+
+            .latest-poster
+            {
+                width: 0;
+            }
+        }
+    }*/

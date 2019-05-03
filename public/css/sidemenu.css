@@ -1,0 +1,259 @@
+#sidemenu {
+  box-sizing: border-box;
+  position: fixed;
+  left: 300px;
+  width: 300px;
+  margin-left: -300px;
+  background-color: #485460;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
+  transition: ease 0.5s;
+  z-index: 5001;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+@media only screen and (max-width : 1079px) {
+  #sidemenu {
+    position: fixed;
+    top: 0;
+    right: 100%;
+    left: 0;
+    height: 100%;
+    transition: ease 0.5s;
+    z-index: 5001;
+    overflow-y: auto;
+  }
+  #sidemenu.show {
+    left: 300px;
+  }
+}
+#sidemenu #sidemenu-inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper {
+  position: relative;
+  bottom: 0;
+  margin: auto 10px 20px 10px;
+  display: block;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper .bottom-info {
+  display: block;
+  text-align: center;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper .bottom-info:last-of-type {
+  margin: 0 0 10px 0;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper .bottom-info span {
+  display: inline-block;
+  color: #FFFFFF;
+  letter-spacing: 1.5px;
+  margin: 0 5px;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper .bottom-info a.information {
+  display: inline-block;
+  font-size: 12px;
+  color: #FFFFFF;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper .bottom-info a.information:hover {
+  color: #009dff;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper #logout {
+  cursor: pointer;
+  display: block;
+  padding: 13px 20px;
+  border: 1px solid #009dff;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 3px;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  position: relative;
+  bottom: 0;
+  margin: 0 auto 10px auto;
+  width: 80%;
+  max-width: 600px;
+}
+#sidemenu #sidemenu-inner #bottom-wrapper #logout:hover {
+  background-color: #009dff;
+  color: #FFFFFF;
+  border-radius: 30px;
+}
+#sidemenu #sidemenu-inner ul {
+  margin-bottom: 40px;
+}
+#sidemenu #sidemenu-inner button#login-modal-open,
+#sidemenu #sidemenu-inner button#register-modal-open {
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 13px 20px;
+  border: 1px solid #009dff;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 3px;
+  transition: all 0.2s ease-in-out;
+  background-color: transparent;
+  width: 80%;
+  max-width: 600px;
+}
+#sidemenu #sidemenu-inner button#login-modal-open:hover,
+#sidemenu #sidemenu-inner button#register-modal-open:hover {
+  background-color: #009dff;
+  border-radius: 30px;
+}
+#sidemenu #sidemenu-inner button#login-modal-open:last-of-type,
+#sidemenu #sidemenu-inner button#register-modal-open:last-of-type {
+  margin-bottom: 20px;
+}
+#sidemenu #sidemenu-user-wrapper {
+  position: relative;
+  margin: 0 0 40px 0;
+  font-size: 0;
+}
+#sidemenu #sidemenu-user-wrapper a.profile-image-wrapper {
+  display: inline-block;
+  font-size: 0;
+  margin: 0 0 0 20px;
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+  position: relative;
+}
+#sidemenu #sidemenu-user-wrapper a.profile-image-wrapper:hover img {
+  opacity: 0.2;
+  -webkit-transition: all 0.3 ease;
+  -moz-transition: all 0.3 ease;
+  -o-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+}
+#sidemenu #sidemenu-user-wrapper a.profile-image-wrapper:hover i.fa-cog {
+  display: block;
+}
+#sidemenu #sidemenu-user-wrapper a.profile-image-wrapper i.fa-cog {
+  font-size: 32px;
+  color: #6E6E6E;
+  position: absolute;
+  top: calc(50% - 16px);
+  left: calc(50% - 13.71665px);
+  display: none;
+  pointer-events: none;
+}
+#sidemenu #sidemenu-user-wrapper img {
+  padding: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 60px;
+}
+#sidemenu #sidemenu-user-wrapper #sidemenu-user-info {
+  display: inline-block;
+  width: 130px;
+  vertical-align: top;
+}
+#sidemenu #sidemenu-user-wrapper #sidemenu-user-info a {
+  color: #009dff;
+  text-decoration: none;
+}
+#sidemenu #sidemenu-user-wrapper #sidemenu-user-info h1 {
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 20px 0 10px 20px;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 300;
+  color: #FFFFFF;
+}
+#sidemenu #sidemenu-user-wrapper #sidemenu-user-info i {
+  font-size: 26px;
+  color: #999999;
+}
+#sidemenu #sidemenu-user-wrapper #sidemenu-user-info i.fa-comment {
+  display: none;
+  margin: 0 20px 0;
+}
+#sidemenu #sidemenu-user-wrapper #sidemenu-user-info i.fa-bell-o {
+  display: none;
+  margin: 10px auto;
+}
+#sidemenu img {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+#sidemenu #logout {
+  position: absolute;
+  right: 0;
+  bottom: 40px;
+  left: 0;
+  text-align: center;
+}
+#sidemenu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#sidemenu ul li {
+  cursor: pointer;
+  margin: 10px 0 0 0;
+  display: block;
+  width: 100%;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  line-height: 30px;
+  text-align: left;
+  text-indent: 30px;
+}
+#sidemenu ul li i {
+  float: right;
+  margin-right: 30px;
+}
+#sidemenu ul li a {
+  display: block;
+  width: 100%;
+  height: 30px;
+  color: #FFFFFF;
+  font-weight: 400;
+  font-size: 16px;
+  text-decoration: none;
+  letter-spacing: 1.5px;
+  line-height: 30px;
+  text-align: left;
+  text-indent: 30px;
+}
+#sidemenu ul li a i {
+  float: right;
+  margin-right: 30px;
+}
+#sidemenu ul li:hover {
+  color: #009dff;
+}
+#sidemenu ul li:hover > a {
+  color: #009dff;
+}
+#sidemenu ul li ul li {
+  margin: 10px 0;
+}
+#sidemenu ul li ul li:first-of-type {
+  margin: 0;
+}
+#sidemenu ul li ul li a {
+  text-indent: 50px;
+}
+#sidemenu ul ul {
+  display: none;
+}

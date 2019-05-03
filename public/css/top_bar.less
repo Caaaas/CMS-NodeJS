@@ -1,0 +1,68 @@
+@import "colors";
+@import "functions";
+
+#top_bar
+{
+    font-size:        0;
+    display:          none;
+    background-color: @sidemenu-color;
+    text-align:       center;
+
+    @media @mediaL
+    {
+
+        display:  block;
+        position: fixed;
+        width:    ~"calc(100% - 300px)";
+        z-index:  1000;
+
+        .fa-user
+        {
+            display: inline-block;
+        }
+    }
+
+    @media @mediaM
+    {
+
+        width: 100%;
+
+        .fa-bars
+        {
+            display: inline-block;
+            cursor:  pointer;
+        }
+    }
+
+    i
+    {
+        display:   none;
+        font-size: 30px;
+        color:     @gameonline-light-color;
+        //display: inline-block;
+        padding:   5px 10px;
+        cursor:    pointer;
+
+        &.fa-user
+        {
+            float: right;
+        }
+
+        &.fa-bars
+        {
+            float: left;
+        }
+    }
+
+    a
+    {
+        font-size: 0;
+        display:   inline-block;
+        img
+        {
+            height:      40px;
+            line-height: 40px;
+            width:       auto;
+        }
+    }
+}

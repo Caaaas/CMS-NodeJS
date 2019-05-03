@@ -1,0 +1,236 @@
+
+<script>
+    $(document).ready(function ()
+    {
+        $("#wrapper-main").on('click', '#submitTopic', function ()
+        {
+            var tagsToAdd = [];
+            $(".tag-input-hidden").each(function () {
+                if ($(this).val() == "1")
+                {
+                    tagsToAdd.push($(this).attr("id"))
+                }
+            })
+
+            $.ajax({
+                url: '/ny-trad',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    title: $('#topic_title').val(),
+                    content: $('.ql-editor').html(),
+                    board_id: '<%= currentBoard %>',
+                    tags: tagsToAdd
+                }),
+                error: function (data)
+                {
+                },
+
+                success: function (data)
+                {
+                    $('#topic_title_error').text("");
+                    $('#topic_content_error').text("");
+                    if (data.code == 200)
+                    {
+                        cacheJS.removeByKey({newTopic: <%= currentBoard %>, type: 'view'});
+                        window.location.replace("/trad/" + data.url);
+                    }
+                    else if (data.title || data.content)
+                    {
+                        if (data.title)
+                        {
+                            $('#topic_title_error').text(data.title);
+                        }
+                        if (data.content)
+                        {
+                            $('#topic_content_error').text(data.content);
+                        }
+                    }
+                    else
+                    {
+                        // :/
+                    }
+                }
+            });
+        });
+
+        $("#wrapper-main").on('click', '.tag-false', function ()
+        {
+            var tagID = $(this).attr("id");
+            $(this).css("display", "none");
+            var hiddenID = tagID.replace("false", "hidden");
+            var trueID = tagID.replace("false", "true");
+
+            $("#" + hiddenID).val(1);
+
+            $("#" + trueID).css("display", "inline-block");
+        });
+
+        $("#wrapper-main").on('click', '.tag-true', function ()
+        {
+            var tagID = $(this).attr("id");
+            $(this).css("display", "none");
+            var hiddenID = tagID.replace("true", "hidden");
+            var falseID = tagID.replace("true", "false");
+
+            $("#" + hiddenID).val(0);
+
+            $("#" + falseID).css("display", "inline-block");
+        });
+    });
+</script>
+    <h1 id="topic_title_error"></h1>
+    <input id="topic_title" placeholder="Passande titel för tråden...">
+    <h1 id="topic_content_error"></h1>
+    <div id="editor-wrapper">
+        <div id="editor">
+        </div>
+    </div>
+    <h5 id="tags-title">TAGGAR</h5>
+    <div class="tag-wrapper">
+    <%
+    for (var j = 0; j < tags.length; j++)
+    {
+    %>
+    <span class="tag tag-false" id="tag-id-false-<%= tags[j].tag_id %>" style="cursor: pointer; background-color: <%= tags[j].tag_bg_color %>; color: <%= tags[j].tag_text_color %>;"><i class="fa fa-check" aria-hidden="true"></i> <%= tags[j].tag_text %></span>
+    <input type="hidden" class="tag-input-hidden" id="tag-id-hidden-<%= tags[j].tag_id %>" name="tag-id-<%= tags[j].tag_id %>" value="0" />
+    <%
+    }
+    %>
+    </div>
+    <button id="submitTopic">Posta tråd</button>
+
+    <div id="topic">
+        <div id="breadcrumb">
+            <a href="/forum">Forum</a>
+            <% for (var i = directory.length - 1; i >= 0; i--) {
+                var key = Object.keys(directory[i]);
+                var value = Object.keys(directory[i]).map(function (key)
+                {
+                    return directory[i][key];
+                });
+            %>
+            <span class="breadcrumb-separator"> > </span>
+            <a href="<%= '/forum/' + encodeURIComponent(customURLEncode(value[0])) + "-" + key[0] %>"><%= value[0] %></a>
+            <% } %>
+        </div>
+        <h1 id="topic-title"></h1>
+        <div class="tag-wrapper">
+        <%
+        for (var j = 0; j < tags.length; j++)
+        {
+        %>
+        <span class="tag tag-true" id="tag-id-true-<%= tags[j].tag_id %>" style="display: none; cursor: pointer; background-color: <%= tags[j].tag_bg_color %>; color: <%= tags[j].tag_text_color %>;"><i class="fa fa-times" aria-hidden="true"></i> <%= tags[j].tag_text %></span></span>
+        <%
+        }
+        %>
+        </div>
+        <div class="post-wrapper">
+            <div class="post-user">
+                <img src="/uploads/profile-pictures/<%= session.user.user_id %>.png" >
+                <div class="post-user-top-wrapper">
+                    <div class="post-user-top-wrapper-upper">
+                        <a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(session.user.username)) + "-" + session.user.user_id %>"><%= session.user.username %></a>
+                        <% for (var j = 0; j < session.user.groups.length; j++) { %>
+                        <h3 style="background-color: <%= session.user.groups[j].color %>"><%= session.user.groups[j].name %></h3>
+                        <% } %>
+                    </div>
+                    <div class="post-user-top-wrapper-under">
+                        <h4>Medlem i <%= moment(session.user.user_register_date).fromNow(true); %></h4>
+                        <span class="post-user-top-wrapper-under-separator">, </span>
+                        <h4><%= session.user.user_total_posts %> inlägg</h4>
+                    </div>
+                </div>
+                <div class="post-user-bot-wrapper">
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="like" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_like %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="agree" class="fa fa-check" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_agree %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="insightful" class="fa fa-graduation-cap" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_insightful %></p>
+                    </div>
+                    <div class="post-user-reactions-container">
+                        <i reaction-type="promote" class="fa fa-star-o" aria-hidden="true"></i>
+                        <p><%= session.user.user_total_promote %></p>
+                    </div>
+                </div>
+            </div>
+            <div class="post">
+                <div class="post-content ql-editor"></div>
+            </div>
+            <div class="post-signature">
+                ASDASDASDSA
+            </div>
+        </div>
+    </div>
+
+<script src="/js/quill.min.js"></script>
+<script>
+    //console.log(Quill.imports);
+    var CodeClass = Quill.import('formats/code');
+    var FontClass = Quill.import('attributors/class/font');
+    var SizeClass = Quill.import('attributors/class/size');
+    var DirectionClass = Quill.import('attributors/class/direction')
+    Quill.register(CodeClass, false);
+    Quill.register(FontClass, false);
+    Quill.register(SizeClass, false);
+    Quill.register(DirectionClass, false);
+
+    var toolbarOptions = [
+        [{'header': [1, 2, 3, 4, 5, 6, false]}],
+
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+
+        [{'color': []}, {'background': []}],          // dropdown with defaults from theme
+
+        ['blockquote', 'code-block'],
+
+        [{'list': 'ordered'}, {'list': 'bullet'}],
+        [{'script': 'sub'}, {'script': 'super'}],
+        [{'indent': '-1'}, {'indent': '+1'}],
+
+        [{'align': ''}, {'align': 'center'}, {'align': 'right'}, {'align': 'justify'}],
+
+        ['link', 'video', 'image', 'formula'],
+
+        ['clean']
+    ];
+
+    var quill = new Quill('#editor', {
+        modules: {
+            toolbar: toolbarOptions
+        },
+        placeholder: 'Skriv ditt inlägg här...',
+        theme: 'snow'
+    });
+
+    var cachedContent = cacheJS.get({newTopic: <%= currentBoard %>, type: 'view'});
+    if (cachedContent != null)
+    {
+        $("#editor .ql-editor").html(cachedContent);
+        $(document.body).trigger("sticky_kit:recalc");
+    }
+
+    quill.on('text-change', function (delta, oldDelta, source)
+    {
+        $(".post-content").html($(".ql-editor").html());
+        if ($("#editor").html() == "<p><br></p>")
+        {
+            cacheJS.removeByKey({newTopic: <%= currentBoard %>, type: 'view'});
+        }
+        else
+        {
+            cacheJS.set({newTopic: <%= currentBoard %>, type: 'view'}, $("#editor .ql-editor").html());
+        }
+    });
+
+    $('#topic_title').on('input', function ()
+    {
+        $('#topic-title').text($('#topic_title').val());
+    });
+</script>

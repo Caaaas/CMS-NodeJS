@@ -1,0 +1,22 @@
+<div id="users_agreement_wrapper">
+    <h4>ANVÄNDARAVTAL</h4>
+    <h2>För att få använda <%= locals.envVariables.websiteName + locals.envVariables.websiteDomainEnd %>'s hemsidas tjänster krävs det att du har ett registrerat medlems konto. Innan du blir medlem måste du läsa och godkänna följande regler och riktlinjer:</h2>
+
+    <h1>Förändringar</h1>
+    <h2>Regler, riktlinjer och villkor kan ändras. Det är användarens ansvar att hålla sig uppdaterad. När ändringar senaste skedde visas längst ner på denna sida.</h2>
+
+    <h1>Moderering</h1>
+    <h2>Moderering och daglig drift utav forumet sköts av företroendevalda medlemmar, så kallade moderatorer.</h2>
+
+    <h1>Rättigheter</h1>
+    <h2><%= locals.envVariables.websiteName + locals.envVariables.websiteDomainEnd %> hävdar ingen äganderätt till någon användargenererad information. Genom att använda <%= locals.envVariables.websiteName + locals.envVariables.websiteDomainEnd %>'s tjänster och generera innehåll ger du oss dock obegränsat tillstånd att globalt och royaltyfritt reproducera, anpassa och publicera materialet.</h2>
+
+    <h1>Personlig integritet</h1>
+    <h2>All inkommande datakommunikation lagras och kan användas för att följa upp eventuella missbruk av tjänsten, alternativt användas inom lagens ramar.</h2>
+    <h2>Informationen lagras även på servrar som inte nås via <%= locals.envVariables.websiteName + locals.envVariables.websiteDomainEnd %> i syfte att använda den som backup och kunna återställa systemet vid oväntade händelser. Endast dem 30 senaste dagarnas information lagras som backup.</h2>
+
+    <%- include(path + "/modules/rules/forum") %>
+
+    <h1>Senast ändrad</h1>
+    <h2>14 Oktober 2017</h2>
+</div>

@@ -1,0 +1,35 @@
+#error-wrapper {
+  display: block;
+  text-align: center;
+}
+@media only screen and (max-width : 1400px) {
+  #error-wrapper {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 20px;
+  }
+}
+#error-wrapper h1 {
+  font-weight: 300;
+  margin: 20px 0 0 0;
+  padding: 0;
+  font-size: 32px;
+}
+#error-wrapper h2 {
+  font-weight: 300;
+  margin: 10px 0;
+  padding: 0;
+  font-size: 24px;
+}
+#error-wrapper h3 {
+  font-weight: 300;
+  margin: 10px 0;
+  padding: 0;
+  font-size: 24px;
+}
+#error-wrapper h4 {
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+}

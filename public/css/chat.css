@@ -1,0 +1,243 @@
+#chat {
+  margin: 40px 0 40px 0;
+  font-size: 0;
+  overflow-x: hidden;
+}
+#chat > h1 {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+}
+#chat > h4#chat_submit_error {
+  color: #C0392B;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+}
+#chat textarea {
+  width: calc(100% - 24px);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  border: 2px solid #E6E6E6;
+  border-radius: 4px 0 0 4px;
+  display: inline-block;
+  box-sizing: border-box;
+  vertical-align: top;
+  margin: 10px 0 0 0;
+  resize: none;
+  height: 24px;
+  font-size: 14px;
+  overflow-y: hidden;
+}
+#chat i.fa-share {
+  display: inline-block;
+  font-size: 20px;
+  color: #FFFFFF;
+  margin: 10px 0 0 0;
+  padding: 2px 2px;
+  border-radius: 0 4px 4px 0;
+  background-color: #2C3E50;
+  cursor: pointer;
+}
+#chat #chat-inner {
+  display: block;
+  height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+#chat #chat-inner .chat-message {
+  font-size: 0;
+  border-bottom: 1px solid #E6E6E6;
+  padding: 0 0 5px 0;
+  margin: 0 0 5px 0;
+  position: relative;
+}
+#chat #chat-inner .chat-message:last-of-type {
+  padding: 0;
+  margin: 0;
+}
+#chat #chat-inner .chat-message .ban-user-wrapper {
+  display: none;
+  margin: 0 5px;
+}
+#chat #chat-inner .chat-message .ban-user-wrapper h2 {
+  color: #C0392B;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+}
+#chat #chat-inner .chat-message .ban-user-wrapper p {
+  font-size: 12px;
+  display: inline-block;
+  width: 130px;
+  padding: 0;
+  margin: 0;
+}
+#chat #chat-inner .chat-message .ban-user-wrapper input {
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid #9B9B9B;
+  box-sizing: border-box;
+  margin: 0 10px;
+  box-shadow: none;
+  display: inline-block;
+  width: calc(100% - 150px);
+}
+#chat #chat-inner .chat-message .ban-user-wrapper .chat-ban-confirm {
+  background-color: #27AE60;
+  width: 50%;
+  font-size: 16px;
+  display: inline-block;
+  margin: 5px 0;
+  border-radius: 5px 0 0 5px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+#chat #chat-inner .chat-message .ban-user-wrapper .chat-ban-abort {
+  background-color: #C0392B;
+  width: 50%;
+  font-size: 16px;
+  display: inline-block;
+  margin: 5px 0;
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+#chat #chat-inner .chat-message .edit-message-wrapper {
+  display: none;
+}
+#chat #chat-inner .chat-message .edit-message-wrapper textarea {
+  width: 100%;
+  border-radius: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+#chat #chat-inner .chat-message .edit-message-wrapper h2 {
+  color: #C0392B;
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+}
+#chat #chat-inner .chat-message .edit-message-wrapper .chat-edit-confirm {
+  background-color: #27AE60;
+  width: 50%;
+  font-size: 16px;
+  display: inline-block;
+  margin: 5px 0;
+  border-radius: 5px 0 0 5px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+#chat #chat-inner .chat-message .edit-message-wrapper .chat-edit-abort {
+  background-color: #C0392B;
+  width: 50%;
+  font-size: 16px;
+  display: inline-block;
+  margin: 5px 0;
+  border-radius: 0 5px 5px 0;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+#chat #chat-inner .chat-message:last-of-type {
+  border: none;
+}
+#chat #chat-inner .chat-message img {
+  vertical-align: top;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+}
+#chat #chat-inner .chat-message .chat-user {
+  width: calc(100% - 40px - 20px - 10px);
+  height: 40px;
+  margin: 0 0 0 10px;
+  display: inline-block;
+}
+#chat #chat-inner .chat-message .chat-user a {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+  text-decoration: none;
+}
+#chat #chat-inner .chat-message .chat-user h2 {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 300;
+}
+#chat #chat-inner .chat-message .chat-user.chat-banned-user h2,
+#chat #chat-inner .chat-message .chat-user.chat-banned-user a {
+  text-decoration: line-through;
+}
+#chat #chat-inner .chat-message .fa-angle-double-left {
+  display: inline-block;
+  width: 20px;
+  font-size: 18px;
+  padding-bottom: 1px;
+  vertical-align: top;
+  color: #999999;
+  cursor: pointer;
+  text-align: center;
+  transition: ease 0.5s;
+}
+#chat #chat-inner .chat-message .fa-angle-double-left.rotate {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  transition: ease 0.5s;
+}
+#chat #chat-inner .chat-message .chat-actions {
+  display: none;
+  position: absolute;
+  height: 40px;
+  top: 0;
+  right: 20px;
+}
+#chat #chat-inner .chat-message .chat-actions i {
+  font-size: 18px;
+  color: #999999;
+  margin: 0 5px 0 0;
+  cursor: pointer;
+}
+#chat #chat-inner .chat-message .chat-actions i.fa-pencil:hover {
+  color: #2ECC71;
+}
+#chat #chat-inner .chat-message .chat-actions i.fa-trash-o:hover {
+  color: #34495E;
+}
+#chat #chat-inner .chat-message .chat-actions i.fa-ban:hover {
+  color: #C0392B;
+}
+#chat #chat-inner .chat-message .chat-actions.display-chat-actions {
+  display: inline-block;
+}
+#chat #chat-inner .chat-message .chat-message-message {
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+  height: auto;
+  width: 100%;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}

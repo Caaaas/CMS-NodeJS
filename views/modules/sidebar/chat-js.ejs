@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    <%
+    if (typeof session.user !== 'undefined')
+    {
+    %>
+    var chatPermissions =
+        {
+            chat_user_id: <%= session.user.user_id %>,
+            chat_submit: <%= session.user.permissions.chat_submit %>,
+            chat_edit_own: <%= session.user.permissions.chat_edit_own %>,
+            chat_edit_own_time: <%= session.user.permissions.chat_edit_own_time %>,
+            chat_edit_all: <%= session.user.permissions.chat_edit_all %>,
+            chat_hide_own: <%= session.user.permissions.chat_hide_own %>,
+            chat_hide_own_time: <%= session.user.permissions.chat_hide_own_time %>,
+            chat_hide_all: <%= session.user.permissions.chat_hide_all %>,
+            chat_ban: <%= session.user.permissions.chat_ban %>,
+            chat_view_hidden: <%= session.user.permissions.chat_view_hidden %>
+        };
+    <%
+    }
+    else
+    {
+    %>
+    var chatPermissions =
+        {
+            chat_user_id: 0,
+            chat_submit: 0,
+            chat_edit_own: 0,
+            chat_edit_own_time: 0,
+            chat_edit_all: 0,
+            chat_hide_own: 0,
+            chat_hide_own_time: 0,
+            chat_hide_all: 0,
+            chat_ban: 0,
+            chat_view_hidden: 0
+        };
+    <%
+    }
+    %>
+</script>

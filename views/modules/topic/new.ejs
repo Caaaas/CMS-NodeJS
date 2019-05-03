@@ -1,0 +1,39 @@
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $("#wrapper-main").on('click', '#submitNewTopicPost', function ()
+        {
+
+            $.ajax({
+                url: '/nytt-inlagg',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    content: $('#editor .ql-editor').html(),
+                    topic_id: '<%= topic.topic_id %>'
+                }),
+                error: function (data)
+                {
+                },
+
+                success: function (data)
+                {
+                    $('#post_content_error').text("");
+                    if (data.code == 200)
+                    {
+                        cacheJS.removeByKey({topicID: <%= topic.topic_id %>, type: 'view'});
+                        window.location.replace("/inlagg/" + data.url);
+                    }
+                    else if (data.content)
+                    {
+                        $('#post_content_error').text(data.content);
+                    }
+                    else
+                    {
+                        // :/
+                    }
+                }
+            });
+        });
+    });
+</script>

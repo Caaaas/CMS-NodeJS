@@ -1,0 +1,123 @@
+@import "functions";
+@import "colors";
+
+#users-wrapper
+{
+    width:  60%;
+    margin: 0 auto;
+
+    @media @mediaM
+    {
+        width: 80%;
+    }
+
+    @media @mediaS
+    {
+        width: 100%;
+    }
+    #user-wrap-top
+    {
+        font-size: 0;
+        #user-left
+        {
+            display:        inline-block;
+            width:          200px;
+            vertical-align: middle;
+
+            @media @mediaXS
+            {
+                width: 100px;
+            }
+            img
+            {
+                width:         200px;
+                height:        200px;
+                border-radius: 50%;
+
+                @media @mediaXS
+                {
+                    width:  100px;
+                    height: 100px;
+                }
+            }
+        }
+        #user-right
+        {
+            display:        inline-block;
+            width:          ~"calc(100% - 200px)";
+            box-sizing:     border-box;
+            padding:        0 20px 20px 20px;
+            vertical-align: middle;
+
+            @media @mediaXS
+            {
+                width: ~"calc(100% - 100px)";
+            }
+            h1
+            {
+                padding:     0;
+                margin:      0;
+                font-size:   28px;
+                font-weight: 300;
+
+                @media @mediaXS
+                {
+                    font-size: 22px;
+                }
+            }
+            h2
+            {
+                padding:     5px 14px;
+                margin:      0 10px 10px 0;
+                font-size:   18px;
+                display:     inline-block;
+                font-weight: 300;
+                color:       #FFFFFF;
+
+                @media @mediaXS
+                {
+                    font-size: 16px;
+                    padding: 5px 5px;
+                }
+            }
+            h3
+            {
+                padding:     0;
+                margin:      0 0 0 0;
+                font-size:   18px;
+                font-weight: 300;
+
+                @media @mediaXS
+                {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    #user-wrap-bot
+    {
+        > h1
+        {
+            .head-divider();
+            margin: 40px auto 20px 0;
+        }
+        #user-left
+        {
+            font-size: 0;
+            p
+            {
+                display:   inline-block;
+                width:     50%;
+                padding:   0;
+                margin:    0;
+                font-size: 16px;
+
+                > span
+                {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

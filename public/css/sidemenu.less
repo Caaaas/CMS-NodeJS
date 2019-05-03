@@ -1,0 +1,316 @@
+@import "functions";
+@import "colors";
+
+#sidemenu
+{
+	box-sizing:       border-box;
+	position:         fixed;
+	left:             @sidemenu-width;
+	width:            @sidemenu-width;
+
+	margin-left:      -@sidemenu-width;
+	background-color: @sidemenu-color;
+
+	overflow-x:       hidden;
+	overflow-y:       auto;
+	height:           100%;
+
+	transition:       ease 0.5s;
+	z-index:          5001;
+
+	@media @mediaM
+	{
+		position:   fixed;
+		top:        0;
+		right:      100%;
+		left:       0;
+		height:     100%;
+
+		transition: ease 0.5s;
+		z-index:    5001;
+		overflow-y: auto;
+		&.show
+		{
+			left: @sidemenu-width;
+		}
+	}
+
+	#sidemenu-inner
+	{
+		display:        flex;
+		flex-direction: column;
+		position:       relative;
+		min-height:     100%;
+
+		#bottom-wrapper
+		{
+			position: relative;
+			bottom:   0;
+			margin:   auto 10px 20px 10px;
+			display:  block;
+			.bottom-info
+			{
+				&:last-of-type
+				{
+					margin: 0 0 10px 0;
+				}
+				display:    block;
+				text-align: center;
+				span
+				{
+					display:        inline-block;
+					color:          #FFFFFF;
+					letter-spacing: 1.5px;
+					margin:         0 5px;
+				}
+				a.information
+				{
+					display:         inline-block;
+					font-size:       12px;
+					color:           #FFFFFF;
+					text-decoration: none;
+					letter-spacing:  1.5px;
+					text-transform:  uppercase;
+
+					&:hover
+					{
+						color: @gameonline-light-color;
+					}
+				}
+			}
+
+			#logout
+			{
+				.button(@gameonline-light-color, @white-color, @gameonline-light-color, @white-color);
+
+				position:  relative;
+				bottom:    0;
+				margin:    0 auto 10px auto;
+				width:     80%;
+				max-width: 600px;
+			}
+		}
+
+		ul
+		{
+			margin-bottom: 40px;
+		}
+
+		button#login-modal-open, button#register-modal-open
+		{
+			cursor:           pointer;
+			display:          block;
+			margin:           20px auto 0 auto;
+			padding:          13px 20px;
+			border:           1px solid @gameonline-light-color;
+			color:            @white-color;
+			font-weight:      700;
+			font-size:        14px;
+			letter-spacing:   3px;
+			transition:       all 0.2s ease-in-out;
+			background-color: transparent;
+			width:            80%;
+			max-width:        600px;
+
+			&:hover
+			{
+				background-color: @gameonline-light-color;
+				border-radius:    30px;
+			}
+
+			&:last-of-type
+			{
+				margin-bottom: 20px;
+			}
+		}
+	}
+
+	.transition(0.5s, ease);
+
+	#sidemenu-user-wrapper
+	{
+		position:  relative;
+		margin:    0 0 40px 0;
+		font-size: 0;
+
+		a.profile-image-wrapper
+		{
+			display:       inline-block;
+			font-size:     0;
+			margin:        0 0 0 20px;
+			padding:       0;
+			width:         120px;
+			height:        120px;
+			border-radius: 60px;
+			position:      relative;
+
+			&:hover img
+			{
+				opacity: 0.2;
+
+				.transition(0.3, ease)
+			}
+
+			&:hover i.fa-cog
+			{
+				display: block;
+			}
+
+			i.fa-cog
+			{
+				font-size:      32px;
+				color:          #6E6E6E;
+				position:       absolute;
+				top:            ~"calc(50% - 16px)";
+				left:           ~"calc(50% - 13.71665px)";
+				display:        none;
+				pointer-events: none;
+			}
+		}
+
+		img
+		{
+			padding:       0;
+			width:         120px;
+			height:        120px;
+			border-radius: 60px;
+		}
+
+		#sidemenu-user-info
+		{
+			display:        inline-block;
+			width:          130px;
+			vertical-align: top;
+
+			a
+			{
+				color:           @gameonline-light-color;
+				text-decoration: none;
+			}
+
+			h1
+			{
+				.one-line-overflow();
+				margin:      20px 0 10px 20px;
+				padding:     0;
+				font-size:   18px;
+				font-weight: 300;
+				color:       @white-color;
+			}
+			i
+			{
+				font-size: 26px;
+				color:     @grey-2-color
+			}
+
+			i.fa-comment
+			{
+				display: none;
+				margin:  0 20px 0;
+			}
+
+			i.fa-bell-o
+			{
+				display: none;
+				margin:  10px auto;
+			}
+		}
+	}
+
+	img
+	{
+		width:      100%;
+		padding:    20px;
+		box-sizing: border-box;
+	}
+
+	#logout
+	{
+		position:   absolute;
+		right:      0;
+		bottom:     40px;
+		left:       0;
+		text-align: center;
+	}
+
+	ul
+	{
+		list-style-type: none;
+		margin:          0;
+		padding:         0;
+
+		li
+		{
+			cursor:          pointer;
+			margin:          10px 0 0 0;
+			display:         block;
+			width:           100%;
+			color:           @white-color;
+			font-weight:     400;
+			font-size:       16px;
+			text-decoration: none;
+			letter-spacing:  1.5px;
+			line-height:     30px;
+			text-align:      left;
+			text-indent:     30px;
+
+			i
+			{
+				float:        right;
+				margin-right: 30px;
+			}
+
+			a
+			{
+				display:         block;
+				width:           100%;
+				height:          30px;
+				color:           @white-color;
+				font-weight:     400;
+				font-size:       16px;
+				text-decoration: none;
+				letter-spacing:  1.5px;
+				line-height:     30px;
+				text-align:      left;
+				text-indent:     30px;
+
+				i
+				{
+					float:        right;
+					margin-right: 30px;
+				}
+			}
+
+			&:hover
+			{
+				color: @gameonline-light-color;
+				> a
+				{
+					color: @gameonline-light-color;
+				}
+			}
+
+			ul
+			{
+				li
+				{
+					margin: 10px 0;
+					&:first-of-type
+					{
+						margin: 0;
+					}
+					a
+					{
+						text-indent: 50px;
+					}
+				}
+			}
+		}
+
+		ul
+		{
+			display: none;
+		}
+	}
+}
+

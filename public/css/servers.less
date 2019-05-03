@@ -1,0 +1,125 @@
+@import "functions";
+@import "colors";
+
+#servers-wrapper
+{
+    > h1
+    {
+        .head-divider();
+        margin: 0;
+    }
+
+    h5
+    {
+        font-size:   18px;
+        color:       @pomegranate-color;
+        padding:     20px 0;
+        margin:      0;
+        font-weight: 300;
+        text-align:  center;
+    }
+
+    .server-item
+    {
+        display:    block;
+        margin:     0 auto 40px auto;
+        width:      660px;
+        box-sizing: border-box;
+        border:     2px solid #E6E6E6;
+        font-size:  0;
+        padding:    8px;
+
+        @media @mediaL
+        {
+            width: 80%;
+        }
+
+        @media @mediaM
+        {
+            width: 100%;
+        }
+
+        h1
+        {
+            padding:     0 0 5px 0;
+            margin:      0;
+            color:       #2C3E50;
+            font-size:   22px;
+            font-weight: 300;
+            .one-line-overflow();
+        }
+
+        h2
+        {
+            padding:     5px 0;
+            margin:      0;
+            color:       #2C3E50;
+            font-size:   18px;
+            font-weight: 300;
+
+            span.server-offline
+            {
+                color: @pomegranate-color;
+            }
+        }
+
+        h3
+        {
+            padding:     5px 0;
+            margin:      0;
+            color:       #2C3E50;
+            font-size:   18px;
+            font-weight: 300;
+        }
+
+        h4
+        {
+            padding:     5px 0;
+            margin:      0;
+            color:       #2C3E50;
+            font-size:   16px;
+            font-weight: 300;
+        }
+
+        .server-item-inner-upper
+        {
+            display:        inline-block;
+            width:          50%;
+            vertical-align: middle;
+        }
+        .server-item-inner-lower
+        {
+            text-align: center;
+            display:    inline-block;
+            width:      50%;
+
+            a
+            {
+                font-family:      "Roboto", Calibri, Arial;
+                background-color: #27AE60;
+                padding:          10px;
+                font-size:        18px;
+                color:            #ECF0F1;
+                letter-spacing:   2px;
+                font-weight:      400;
+                text-decoration:  none;
+                border-radius:    5px;
+
+                &:hover
+                {
+                    filter:     brightness(110%);
+                    transition: all ease .5s;
+                }
+
+                &.server-offline
+                {
+                    cursor:           default;
+                    pointer-events:   none;
+
+                    background-color: @grey-1-color;
+                }
+            }
+        }
+    }
+}
+

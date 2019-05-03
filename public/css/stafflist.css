@@ -1,0 +1,67 @@
+#stafflist-wrapper {
+  font-size: 0;
+}
+#stafflist-wrapper h1 {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+  font-size: 20px;
+  margin: 0 0 10px 0;
+}
+#stafflist-wrapper .staff-user {
+  margin: 0 0 20px 0;
+}
+#stafflist-wrapper .staff-user img {
+  height: 100px;
+  width: auto;
+  margin: 0 20px 0 0;
+  border-radius: 50%;
+}
+#stafflist-wrapper .staff-user .staff-user-inner {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(100% - 120px);
+}
+#stafflist-wrapper .staff-user .staff-user-inner .staff-user-name-wrapper {
+  margin: 15px 0 0 0;
+  display: inline-block;
+  width: 100%;
+}
+@media only screen and (max-width: 480px) {
+  #stafflist-wrapper .staff-user .staff-user-inner .staff-user-name-wrapper {
+    margin: 0;
+  }
+}
+#stafflist-wrapper .staff-user .staff-user-inner .staff-user-name-wrapper a {
+  text-decoration: none;
+  color: #999999;
+  font-size: 20px;
+  vertical-align: top;
+}
+#stafflist-wrapper .staff-user .staff-user-inner .staff-user-name-wrapper a:hover {
+  color: #009dff;
+}
+#stafflist-wrapper .staff-user .staff-user-inner .staff-user-groups {
+  display: inline-block;
+}
+#stafflist-wrapper .staff-user .staff-user-inner .staff-user-groups h3 {
+  font-size: 16px;
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 11px 10px 10px 0;
+  color: #FFFFFF;
+  font-weight: 300;
+}
+@media only screen and (max-width: 480px) {
+  #stafflist-wrapper .staff-user .staff-user-inner .staff-user-groups h3 {
+    font-size: 12px;
+    margin: 3px 3px 3px 0;
+  }
+}
+#stafflist-wrapper .staff-user .staff-user-inner .staff-user-groups h3:last-of-type {
+  margin: 0;
+}

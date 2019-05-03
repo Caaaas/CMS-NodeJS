@@ -1,0 +1,83 @@
+@import "functions";
+@import "colors";
+
+#stafflist-wrapper
+{
+    font-size: 0;
+    h1
+    {
+        .head-divider();
+        font-size: 20px;
+        margin:    0 0 10px 0;
+    }
+
+    .staff-user
+    {
+        margin: 0 0 20px 0;
+        img
+        {
+            height:  100px;
+            width: auto;
+            margin: 0 20px 0 0;
+            border-radius: 50%;
+        }
+
+        .staff-user-inner
+        {
+            display: inline-block;
+            vertical-align: top;
+            width: ~"calc(100% - 120px)";
+
+            .staff-user-name-wrapper
+            {
+                margin:      15px 0 0 0;
+                display: inline-block;
+                width: 100%;
+
+                @media @mediaXS
+                {
+                    margin: 0;
+                }
+
+                a
+                {
+                    text-decoration: none;
+                    color: @grey-2-color;
+                    font-size:      20px;
+                    vertical-align: top;
+
+                    &:hover
+                    {
+                        color: @gameonline-light-color;
+                    }
+                }
+            }
+
+            .staff-user-groups
+            {
+                display: inline-block;
+                h3
+                {
+                    font-size:   16px;
+                    display:     inline-block;
+                    padding:     5px 10px;
+                    margin:      11px 10px 10px 0;
+                    color:       @white-color;
+                    font-weight: 300;
+
+                    @media @mediaXS
+                    {
+                        font-size:   12px;
+                        margin:      3px 3px 3px 0;
+                    }
+
+                    &:last-of-type
+                    {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,248 @@
+#latest-news {
+  box-sizing: border-box;
+  width: 100%;
+  position: relative;
+  margin: 0 0 40px;
+}
+#latest-news #latest-news-head {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+  margin: 0 0 10px 0;
+}
+#latest-news #latest-news-carousel-wrapper {
+  overflow: hidden;
+}
+#latest-news #latest-news-carousel-wrapper a {
+  color: #000000;
+  text-decoration: none;
+}
+#latest-news #latest-news-carousel-wrapper h1 {
+  font-size: 26px;
+  font-weight: 700;
+  padding: 0;
+  margin: 0;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#latest-news #latest-news-carousel-wrapper h2 {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 5px 0;
+  margin: 0;
+  color: #999999;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#latest-news #latest-news-carousel-wrapper h2 i {
+  color: #000000;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-carousel {
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-carousel .latest-news-content {
+  height: 100px;
+  overflow: hidden;
+  padding: 0 !important;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-carousel.active {
+  display: block;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-pages {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-pages li {
+  border: 1px solid #A0A0A0;
+  border-radius: 50%;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  text-align: center;
+  margin: 0 5px;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-pages li.slick-active {
+  background-color: #A0A0A0;
+}
+#latest-news #latest-news-carousel-wrapper .latest-news-pages li button {
+  display: none;
+}
+#latest-posts {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 0;
+}
+#latest-posts #latest-posts-head {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+  margin: 0 0 5px 0;
+}
+#latest-posts .post {
+  padding: 10px 0;
+  border-bottom: 1px solid #EEEEEE;
+}
+#latest-posts .post.not-read .title {
+  color: #E74C3C !important;
+}
+#latest-posts .post .creator {
+  width: 50%;
+  text-align: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+@media only screen and (max-width : 768px) {
+  #latest-posts .post .creator {
+    width: 64%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #latest-posts .post .creator {
+    width: 100%;
+  }
+}
+#latest-posts .post .creator .creator-inner {
+  vertical-align: middle;
+  display: inline-block;
+  width: calc(100% - 50px);
+}
+#latest-posts .post .creator .creator-inner .title {
+  color: #111111;
+  font-size: 16px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#latest-posts .post .creator .creator-inner .title a {
+  text-decoration: none;
+  color: inherit;
+}
+#latest-posts .post .creator .creator-inner .title a:hover {
+  text-decoration: underline;
+}
+#latest-posts .post .creator .creator-inner .title i {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+#latest-posts .post .creator .creator-inner .title i.fa-lock {
+  color: #F39C12;
+}
+#latest-posts .post .creator .creator-inner .title i.fa-thumb-tack {
+  color: #C0392B;
+}
+#latest-posts .post .creator .creator-inner .author {
+  font-size: 12px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#latest-posts .post .creator .creator-inner .author p {
+  display: inline-block;
+  font-size: 12px;
+}
+#latest-posts .post .creator .creator-inner .author a {
+  text-decoration: none;
+  color: inherit;
+  vertical-align: middle;
+}
+#latest-posts .post .creator .creator-inner .author a:hover {
+  color: #009dff;
+}
+#latest-posts .post .creator img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 10px 0 0;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+#latest-posts .post .latest-poster {
+  display: inline-block;
+  width: 30%;
+  text-align: right;
+  vertical-align: middle;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media only screen and (max-width : 768px) {
+  #latest-posts .post .latest-poster {
+    width: 36%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  #latest-posts .post .latest-poster {
+    width: 0;
+  }
+}
+#latest-posts .post .latest-poster img {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: 0 0 0 10px;
+  border-radius: 20px;
+}
+#latest-posts .post .latest-poster .latest-poster-inner {
+  display: inline-block;
+}
+#latest-posts .post .latest-poster .latest-poster-inner p {
+  display: block;
+  text-align: right;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#latest-posts .post .latest-poster .latest-poster-inner .latest-poster-user a {
+  text-decoration: none;
+  color: inherit;
+}
+#latest-posts .post .latest-poster .latest-poster-inner .latest-poster-user a:hover {
+  color: #009dff;
+}
+#latest-posts .post .answers,
+#latest-posts .post .views {
+  width: 10%;
+  text-align: center;
+}
+@media only screen and (max-width : 768px) {
+  #latest-posts .post .answers,
+  #latest-posts .post .views {
+    width: 0;
+  }
+}
+#latest-posts p {
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  color: #999999;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 300;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#latest-posts p.answers {
+  color: #999999;
+}
+#latest-posts i {
+  color: #A0A0A0;
+}

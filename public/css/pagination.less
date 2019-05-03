@@ -1,0 +1,97 @@
+@import "functions";
+@import "colors";
+
+#pagination
+{
+    display:    block;
+    text-align: center;
+    margin:     40px 0;
+
+    a
+    {
+        border:          2px solid @grey-2-color;
+        display:         inline-block;
+        font-size:       20px;
+        text-decoration: none;
+        line-height:     40px;
+        color:           @grey-1-color;
+        margin:          0 5px;
+
+        @media @mediaS
+        {
+            font-size:   18px;
+            line-height: 26px;
+        }
+
+        @media @mediaXS
+        {
+            font-size:   16px;
+            line-height: 20px;
+        }
+
+        &.small
+        {
+            width:         40px;
+            height:        40px;
+            border-radius: 50%;
+
+            @media @mediaS
+            {
+                width:  26px;
+                height: 26px;
+            }
+
+            @media @mediaXS
+            {
+                width:  20px;
+                height: 20px;
+            }
+        }
+
+        &.active
+        {
+            background-color: @grey-2-color;
+        }
+
+        &.big
+        {
+            border-radius: 20px;
+            padding:       0 10px;
+
+            @media @mediaXS
+            {
+                &:first-of-type
+                {
+                    font-size: 0;
+                    width:     20px;
+                    height:    20px;
+                    &:before
+                    {
+                        font-family: FontAwesome;
+                        font-size:   16px;
+                        display:     inline-block;
+                        content:     '\f100';
+                    }
+                }
+
+                &:last-of-type
+                {
+                    font-size: 0;
+                    width:     20px;
+                    height:    20px;
+                    &:before
+                    {
+                        font-family: FontAwesome;
+                        font-size:   16px;
+                        display:     inline-block;
+                        content:     '\f101';
+                    }
+                }
+            }
+        }
+        &:hover
+        {
+            background-color: @grey-2-color;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<div class="profile">
+    <h6>LADDA UPP NY PROFILBILD</h6>
+
+    <h2 id="upload-picture-success-message"></h2>
+    <h2 id="upload-picture-error-message"></h2>
+
+    <div class="uploader" onclick="$('#profile-picture-upload').click()">
+        <h1><span>Välj en bild</span> eller dra den hit.</h1>
+        <input type="file" name="profile-picture" onchange="previewFile()" id="profile-picture-upload"/>
+    </div>
+
+    <div id="crop-wrapper">
+        <div id="profile-picture-container"></div>
+        <div id="crop-button-wrapper">
+            <button id="picture-upload">LADDA UPP</button>
+            <button id="picture-upload-abort">AVBRYT</button>
+        </div>
+    </div>
+
+    <h6>BYT LÖSENORD</h6>
+    <h4 id="change-password-error"></h4>
+    <h4 id="change-password-success"></h4>
+    <h3>GAMMALT LÖSENORD</h3>
+    <input type="password" id="change-password-old" autocomplete="off"/>
+    <h3>NYTT LÖSENORD</h3>
+    <input type="password" id="change-password-new" autocomplete="off"/>
+
+    <button id="password-change-submit">BYT</button>
+
+    <h6>STEAM</h6>
+    <% if (steam.length == 0) { %>
+    <h3>KOPPLA DITT KONTO MED STEAM</h3>
+    <div id="steam-wrapper">
+        <a href="/profil/steam-login"><img class="steam-login" src="https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_02.png"></a>
+    </div>
+    <% } else { %>
+    <h3>DU ÄR INLOGGAD SOM</h3>
+    <div id="steam-wrapper">
+        <img class="steam-profile-picture" src="<%= steam[0].avatar_large %>">
+        <div class="steam-user-info">
+            <p><%= steam[0].username %></p>
+            <a href="https://steamcommunity.com/profiles/<%= steam[0].steamid %>"><%= steam[0].steamid %></a>
+        </div>
+        <a class="steam-logout" href="/profil/steam-logout">LOGGA UT FRÅN STEAM</a>
+    </div>
+    <% } %>
+</div>
+
+<script src="/js/profile/croppie.js"></script>
+<script src="/js/profile/upload-picture.js"></script>
+<script src="/js/profile/change-password.js"></script>

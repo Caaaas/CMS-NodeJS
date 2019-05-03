@@ -1,0 +1,18 @@
+.users_agreement #users_agreement_wrapper {
+  display: block;
+  width: 80%;
+  margin: 40px auto;
+}
+.users_agreement #users_agreement_wrapper h4 {
+  color: #A0A0A0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  padding: 0 0 5px 0;
+  vertical-align: middle;
+  border-bottom: 1px solid #E6E6E6;
+}
+.users_agreement #users_agreement_wrapper a {
+  color: #C0392B;
+  text-decoration: none;
+}

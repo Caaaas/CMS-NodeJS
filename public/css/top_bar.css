@@ -1,0 +1,48 @@
+#top_bar {
+  font-size: 0;
+  display: none;
+  background-color: #485460;
+  text-align: center;
+}
+@media only screen and (max-width : 1400px) {
+  #top_bar {
+    display: block;
+    position: fixed;
+    width: calc(100% - 300px);
+    z-index: 1000;
+  }
+  #top_bar .fa-user {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width : 1079px) {
+  #top_bar {
+    width: 100%;
+  }
+  #top_bar .fa-bars {
+    display: inline-block;
+    cursor: pointer;
+  }
+}
+#top_bar i {
+  display: none;
+  font-size: 30px;
+  color: #009dff;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+#top_bar i.fa-user {
+  float: right;
+}
+#top_bar i.fa-bars {
+  float: left;
+}
+#top_bar a {
+  font-size: 0;
+  display: inline-block;
+}
+#top_bar a img {
+  height: 40px;
+  line-height: 40px;
+  width: auto;
+}

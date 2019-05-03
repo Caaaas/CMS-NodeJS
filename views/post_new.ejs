@@ -1,0 +1,54 @@
+<h1 id="post_content_error"></h1>
+<div id="editor-wrapper">
+    <div id="editor">
+    </div>
+</div>
+<button id="submitPost">POSTA INLÄGG</button>
+
+<div id="topic">
+    <div class="post-wrapper">
+        <div class="post-user">
+            <img src="/uploads/profile-pictures/<%= session.user.user_id %>.png">
+            <div class="post-user-top-wrapper">
+                <div class="post-user-top-wrapper-upper">
+                    <h2><%= session.user.username %></h2>
+                    <% for (var j = 0; j < session.user.groups.length; j++) { %>
+                    <h3 style="background-color: <%= session.user.groups[j].color %>"><%= session.user.groups[j].name %></h3>
+                    <% } %>
+                </div>
+                <div class="post-user-top-wrapper-under">
+                    <h4>Medlem i <%= moment(session.user.user_register_date).fromNow(true); %></h4>
+                    <span class="post-user-top-wrapper-under-separator">, </span>
+                    <h4><%= session.user.user_total_posts %> inlägg</h4>
+                </div>
+            </div>
+            <div class="post-user-bot-wrapper">
+                <div class="post-user-reactions-container">
+                    <i reaction-type="like" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    <p><%= session.user.user_total_like %></p>
+                </div>
+                <div class="post-user-reactions-container">
+                    <i reaction-type="agree" class="fa fa-check" aria-hidden="true"></i>
+                    <p><%= session.user.user_total_agree %></p>
+                </div>
+                <div class="post-user-reactions-container">
+                    <i reaction-type="insightful" class="fa fa-graduation-cap" aria-hidden="true"></i>
+                    <p><%= session.user.user_total_insightful %></p>
+                </div>
+                <div class="post-user-reactions-container">
+                    <i reaction-type="promote" class="fa fa-star-o" aria-hidden="true"></i>
+                    <p><%= session.user.user_total_promote %></p>
+                </div>
+            </div>
+        </div>
+        <div class="post">
+            <div class="post-content ql-editor"></div>
+        </div>
+        <div class="post-signature">
+            ASDASDASDSA
+        </div>
+    </div>
+</div>
+
+<script src="/js/quill.min.js"></script>
+<script src="/js/quill-standard-layout.js"></script>

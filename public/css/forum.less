@@ -1,0 +1,441 @@
+@import "functions";
+@import "colors";
+
+#boards
+{
+    width:      100%;
+    box-sizing: border-box;
+    font-size:  0;
+
+    #board-page-filler
+    {
+        display: block;
+        width:   100%;
+        height:  40px;
+    }
+
+    #breadcrumb
+    {
+        display: inline-block;
+        padding: 0 0 0 0;
+
+        @media @mediaL
+        {
+        }
+
+        a
+        {
+            font-size:       14px;
+            color:           @grey-1-color;
+            text-decoration: none;
+            &:hover
+            {
+                color: @gameonline-light-color;
+            }
+        }
+        .breadcrumb-separator
+        {
+            font-size:   14px;
+            color:       @grey-1-color;
+            white-space: pre;
+        }
+    }
+
+    #category-head
+    {
+        .head-divider();
+        margin: 40px 0 0 0;
+
+        &:first-of-type
+        {
+            margin: 0 0 10px 0;
+        }
+    }
+
+    .board
+    {
+        padding:       10px 0;
+        border-bottom: 1px solid @grey-6-color;
+
+        h5
+        {
+            font-size: 16px;
+            color:     @grey-1-color;
+            margin:    0;
+        }
+
+        .board-content
+        {
+            width:          50%;
+            text-align:     left;
+            display:        inline-block;
+            vertical-align: middle;
+
+            @media @mediaS
+            {
+                width: 64%;
+            }
+
+            @media @mediaXS
+            {
+                width: 100%;
+            }
+
+            a.board-title
+            {
+                font-size:       18px;
+                font-weight:     bold;
+                color:           @black-light-color;
+                text-decoration: none;
+
+                &:hover
+                {
+                    color: @gameonline-light-color;
+                }
+            }
+
+            h4
+            {
+                padding:     5px 0;
+                margin:      0;
+                font-weight: 300;
+                font-size:   14px;
+                color:       @black-light-color;
+            }
+        }
+
+        .latest-poster
+        {
+            display:        inline-block;
+            width:          30%;
+            text-align:     right;
+            vertical-align: middle;
+
+            .one-line-overflow();
+
+            @media @mediaS
+            {
+                width: 36%;
+            }
+
+            @media @mediaXS
+            {
+                width: 0;
+            }
+
+            img
+            {
+                display:        inline-block;
+                width:          40px;
+                height:         40px;
+                margin:         0 0 0 10px;
+                border-radius:  20px;
+                vertical-align: middle;
+            }
+
+            .latest-poster-inner
+            {
+                display:        inline-block;
+                vertical-align: middle;
+                width:          ~"calc(100% - 50px)";
+                a
+                {
+                    display:         block;
+                    font-size:       16px;
+                    text-decoration: none;
+                    color:           @black-light-color;
+                    .one-line-overflow();
+
+                    &:hover
+                    {
+                        color: @gameonline-light-color;
+                    }
+
+                    &.topic-title:hover
+                    {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        .answers, .views
+        {
+            width:      10%;
+            text-align: center;
+
+            @media @mediaS
+            {
+                width: 0;
+            }
+        }
+    }
+
+    p
+    {
+        padding:        0;
+        margin:         0;
+        font-size:      16px;
+        color:          @grey-2-color;
+        display:        inline-block;
+        vertical-align: middle;
+        font-weight:    300;
+
+        .one-line-overflow();
+
+        &.answers
+        {
+            color: @grey-2-color;
+        }
+    }
+
+    i
+    {
+        color: @grey-3-color;
+    }
+}
+
+#topics
+{
+    width:      100%;
+    box-sizing: border-box;
+    font-size:  0;
+    margin:     40px 0;
+
+    #topics-head
+    {
+        .head-divider();
+        margin: 0 0 5px 0;
+
+        h3
+        {
+            margin:      0;
+            padding:     0;
+            font-weight: 300;
+            display:     inline-block;
+        }
+
+        a
+        {
+            color:           inherit;
+            font-size:       16px;
+            text-decoration: none;
+            display:         inline-block;
+            float:           right;
+
+            &:hover
+            {
+                color: @gameonline-light-color;
+
+                i
+                {
+                    color: @gameonline-light-color;
+                }
+            }
+        }
+    }
+
+    .topic
+    {
+        padding:       10px 0;
+        border-bottom: 1px solid @grey-6-color;
+
+        &.not-read
+        {
+            .title
+            {
+                color: @alizarin-color !important;
+            }
+        }
+
+        h5
+        {
+            font-size: 16px;
+            color:     @grey-1-color;
+            margin:    0;
+        }
+
+        .creator
+        {
+            width:          50%;
+            text-align:     left;
+            display:        inline-block;
+            vertical-align: middle;
+
+            @media @mediaS
+            {
+                width: 64%;
+            }
+
+            @media @mediaXS
+            {
+                width: 100%;
+            }
+
+            .creator-inner
+            {
+                vertical-align: middle;
+                display:        inline-block;
+                width:          ~"calc(100% - 50px)";
+
+                .title
+                {
+                    color:     @black-light-color;
+                    font-size: 16px;
+                    .one-line-overflow();
+
+                    a
+                    {
+                        text-decoration: none;
+                        color:           inherit;
+
+                        &:hover
+                        {
+                            text-decoration: underline;
+                        }
+                    }
+
+                    i
+                    {
+                        margin-right:   5px;
+                        vertical-align: middle;
+
+                        &.fa-lock
+                        {
+                            color: @lock-color;
+                        }
+                        &.fa-thumb-tack
+                        {
+                            color: @sticky-color;
+                        }
+                    }
+                }
+
+                .author
+                {
+                    font-size: 12px;
+                    .one-line-overflow();
+
+                    p
+                    {
+                        display:   inline-block;
+                        font-size: 12px;
+                        margin:    0 4px 0 0;
+                    }
+
+                    a
+                    {
+                        text-decoration: none;
+                        color:           inherit;
+                        vertical-align:  middle;
+
+                        &:hover
+                        {
+                            color: @gameonline-light-color;
+                        }
+                    }
+                }
+            }
+
+            img
+            {
+                display:        inline-block;
+                width:          40px;
+                height:         40px;
+                margin:         0 10px 0 0;
+                border-radius:  20px;
+                vertical-align: top;
+            }
+        }
+
+        .latest-poster
+        {
+            display:        inline-block;
+            width:          30%;
+            text-align:     right;
+            vertical-align: middle;
+
+            .one-line-overflow();
+
+            @media @mediaS
+            {
+                width: 36%;
+            }
+
+            @media @mediaXS
+            {
+                width: 0;
+            }
+
+            img
+            {
+                display:       inline-block;
+                width:         40px;
+                height:        40px;
+                margin:        0 0 0 10px;
+                border-radius: 20px;
+            }
+
+            .latest-poster-inner
+            {
+                display: inline-block;
+
+                p
+                {
+                    display:    block;
+                    text-align: right;
+
+                    .one-line-overflow();
+                }
+
+                .latest-poster-user
+                {
+                    a
+                    {
+                        text-decoration: none;
+                        color:           inherit;
+
+                        &:hover
+                        {
+                            color: @gameonline-light-color;
+                        }
+                    }
+                }
+            }
+        }
+
+        .answers, .views
+        {
+            width:      10%;
+            text-align: center;
+
+            @media @mediaS
+            {
+                width: 0;
+            }
+        }
+    }
+
+    p
+    {
+        padding:        0;
+        margin:         0;
+        font-size:      16px;
+        color:          @grey-2-color;
+        display:        inline-block;
+        vertical-align: middle;
+        font-weight:    300;
+
+        .one-line-overflow();
+
+        &.answers
+        {
+            color: @grey-2-color;
+        }
+    }
+
+    i
+    {
+        color: @grey-3-color;
+    }
+}

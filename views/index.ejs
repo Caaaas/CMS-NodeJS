@@ -1,0 +1,90 @@
+<div id="latest-news">
+    <h3 id="latest-news-head">SENASTE NYTT</h3>
+    <div id="latest-news-carousel-wrapper">
+        <%
+        for (var i = 0; i < news.length; i++)
+        {
+        %>
+        <div class="latest-news-carousel">
+            <a href="<%= '/trad/' + encodeURIComponent(customURLEncode(news[i].topic_title)) + "-" + news[i].topic_id %>"><h1><%= news[i].topic_title %></h1></a>
+            <h2>
+                <i class="fa fa-user" aria-hidden="true"></i>&#160 <a style="color: <%= news[i].topic_creator_primary_group_color %>" href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(news[i].topic_creator_username)) + "-" + news[i].topic_creator_id%>"><%= news[i].topic_creator_username %></a>&#160&#160&#160 <i class="fa fa-clock-o" aria-hidden="true"></i>&#160 <%= timeToPrint(news[i].topic_creation_date) %>
+                <% if (news[i].topic_tags != 0)
+                {
+                    for (var j = 0; j < news[i].topic_tags.length; j++)
+                    {
+                        %>
+                        <span class="tag" style="background-color: <%= news[i].topic_tags[j].tag_bg_color %>; color: <%= news[i].topic_tags[j].tag_text_color %>;"><%= news[i].topic_tags[j].tag_text %></span>
+                        <%
+                    }
+                }
+                %>
+            </h2>
+            <div class="latest-news-content ql-editor"><%- news[i].post_content %></div>
+        </div>
+        <%
+        }
+        %>
+    </div>
+
+    <script type="text/javascript" src="/js/slick.min.js"></script>
+    <script type="text/javascript">
+        $('#latest-news-carousel-wrapper').slick({
+            autoplay: true,
+            autoplaySpeed: 5000,
+            accessibility: false,
+            arrows: false,
+            dots: true,
+            dotsClass: 'latest-news-pages',
+            draggable: false
+
+        });
+        $(window).resize();
+    </script>
+
+</div>
+
+<div id="latest-posts">
+    <h3 id="latest-posts-head">NYA INLÄGG</h3>
+    <%
+    for (var i = 0; i < posts.length; i++)
+    {
+    %>
+    <div class="post <% if (typeof session.user !== "undefined" && posts[i].user_last_read_post != posts[i].topic_last_post_id) {%>not-read<%}%>">
+        <div class="creator">
+            <img src="/uploads/profile-pictures/<%= posts[i].topic_creator_id %>.png">
+            <div class="creator-inner">
+                <% if (typeof session.user === "undefined" || posts[i].user_last_read_post == posts[i].topic_last_post_id) { %>
+                <div class="title"><a href="<%= '/trad/' + encodeURIComponent(customURLEncode(posts[i].topic_title)) + "-" + posts[i].topic_id + "/sista"%>"><% if (posts[i].topic_sticky) { %><i class="fa fa-thumb-tack" aria-hidden="true"></i><% } %><% if (posts[i].topic_locked) { %><i class="fa fa-lock" aria-hidden="true"></i><% } %><%= posts[i].topic_title %></a></div>
+                <% } else { %>
+                <div class="title"><a href="<%= '/trad/' + encodeURIComponent(customURLEncode(posts[i].topic_title)) + "-" + posts[i].topic_id + "/olast" %>"><% if (posts[i].topic_sticky) { %><i class="fa fa-thumb-tack" aria-hidden="true"></i><% } %><% if (posts[i].topic_locked) { %><i class="fa fa-lock" aria-hidden="true"></i><% } %><%= posts[i].topic_title %></a></div>
+                <% } %>
+                <div class="author">
+                    <a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(posts[i].topic_creator_username)) + "-" + posts[i].topic_creator_id%>"><%= posts[i].topic_creator_username %></a> <p>| <%= timeToPrint(posts[i].topic_creation_date) %> |</p> <a href="<%= '/forum/' + encodeURIComponent(customURLEncode(posts[i].board_title)) + "-" + posts[i].topic_board_id %>"><%= posts[i].board_title %></a>
+                    <% if (posts[i].topic_tags != 0)
+                    {
+                        for (var j = 0; j < posts[i].topic_tags.length; j++)
+                        {
+                            %>
+                            <span class="tag" style="background-color: <%= posts[i].topic_tags[j].tag_bg_color %>; color: <%= posts[i].topic_tags[j].tag_text_color %>;"><%= posts[i].topic_tags[j].tag_text %></span>
+                            <%
+                        }
+                    }
+                    %>
+                </div>
+            </div>
+        </div>
+        <p class="answers"><i class="fa fa-comments" aria-hidden="true"></i> <%= posts[i].topic_posts %></p>
+        <p class="views"><i class="fa fa-eye" aria-hidden="true"></i> <%= posts[i].topic_views %></p>
+        <div class="latest-poster">
+            <div class="latest-poster-inner">
+                <p class="latest-poster-user"><a href="<%= '/anvandare/' + encodeURIComponent(customURLEncode(posts[i].topic_last_user_posted_username)) + "-" + posts[i].topic_last_user_posted_id%>"><%= posts[i].topic_last_user_posted_username %></a></p>
+                <p class="latest-poster-datetime"><%= timeToPrint(posts[i].topic_last_post_date) %></p>
+            </div>
+            <img src="/uploads/profile-pictures/<%= posts[i].topic_last_user_posted_id %>.png" >
+        </div>
+    </div>
+    <%
+    }
+    %>
+</div>

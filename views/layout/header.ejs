@@ -1,0 +1,64 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title><%= envVariables.websiteTitle %></title>
+<meta name="description" content="Ett spelcommunity för CS:GO som fokuserar på skönt folk och icke restriktiva regler. Vi föredrar en skön stämning framför stenhårda regler."/>
+
+<meta property="og:title" content="<%= envVariables.websiteTitle %>"/>
+<meta property="og:description" content="Ett spelcommunity för CS:GO som fokuserar på skönt folk och icke restriktiva regler. Vi föredrar en skön stämning framför stenhårda regler."/>
+<meta property="og:url" content="https://<%= envVariables.websiteName + envVariables.websiteDomainEnd %>" />
+<meta property="og:image" content="https://<%= envVariables.websiteName + envVariables.websiteDomainEnd %>/images/logotype.png" />
+<meta property="og:image:alt" content="Logotyp för hemsidan <%= envVariables.websiteName + envVariables.websiteDomainEnd %>" />
+<meta property="og:type" content="article"/>
+<meta property="og:site_name" content="<%= envVariables.websiteName + envVariables.websiteDomainEnd %>"/>
+<meta property="og:locale" content="sv_SE"/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png?v=PYeKEyrvax">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png?v=PYeKEyrvax">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png?v=PYeKEyrvax">
+<link rel="manifest" href="/favicons/site.webmanifest?v=PYeKEyrvax">
+<link rel="mask-icon" href="/favicons/safari-pinned-tab.svg?v=PYeKEyrvax" color="#5bbad5">
+<link rel="shortcut icon" href="/favicons/favicon.ico?v=PYeKEyrvax">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="msapplication-config" content="/favicons/browserconfig.xml?v=PYeKEyrvax">
+<meta name="theme-color" content="#ffffff">
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700" rel="stylesheet">
+
+<link href="/css/style.css" rel="stylesheet" type='text/css'>
+
+<script src="/js/jquery-3.1.1.min.js"></script>
+<script src="/js/moment.js">moment().format();</script>
+<script src="/js/autosize.js"></script>
+<script src="/js/cacheJS.js"></script>
+<script type="text/javascript">
+    moment.locale("sv");
+</script>
+
+<% if (typeof session.user === "undefined") { %>
+<script src="/js/auth/login.js"></script>
+<script src="/js/auth/register.js"></script>
+<script src="/js/auth/forgot-password.js"></script>
+<script src="/js/auth/login-register.js"></script>
+<% } else { %>
+<script src="/js/auth/logout.js"></script>
+<% } %>
+
+<script src="/js/sidemenu.js"></script>
+<script src="/js/top-bar.js"></script>
+<script src="/js/disable-background.js"></script>
+<script src="/js/cookies/cookieconsent.js"></script>
+<script src="/js/cookies/cookieinit.js"></script>
+<!-- Så att jag med jQuery kan kolla storleken för MediaQuerys
+Samt att den är browser independent, agerar lika som CSSen
+Fult men funkar -->
+<div class="media-query-size mediaF"></div>
+<div class="media-query-size mediaL"></div>
+<div class="media-query-size mediaM"></div>
+<div class="media-query-size mediaS"></div>
+<div class="media-query-size mediaXS"></div>
+<div class="media-query-size mediaC"></div>
