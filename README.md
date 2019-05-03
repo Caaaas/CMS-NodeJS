@@ -3,7 +3,7 @@ This CMS system built in Node JS was meant to be, and was used for a gaming comm
 
 Please note, I used this project as a way of learning Node JS and a lot of general things about web development. Therefore a lot of code will differ and not follow the same design or way of functioning. It does also not represent how I would attack as big of a project as this was if I were to do it again. I would for example use a MVC style rather then just pushing everything in together. I would use Promises instead of the Async library, and so on. 
 
-To see better examples on how I would structure something in the future, take a look at my newer public repositories.
+To see better examples on how I would structure something in the future, take a look at my newer (but sadly much smaller...) public repositories.
 
 ### To run, if I remeber correctly.
 - Download.
