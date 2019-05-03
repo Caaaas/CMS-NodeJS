@@ -37,8 +37,10 @@ Sadly, it's not really documented, something I should have done, but hey, it's m
 As of writing this, a version of it is currently active on https://casperj.se
 No guarantee it will be up as of you looking it up. Registration is inactive due to the mail server being down, so you can't verify your account. Might get around to fixing that in the future jsut because. Also might get around to implement som standard guest accounts.
 
-Some default test accounts:
-admin admin - Admin with full on permission
-user user - Normal user with some default user permissions.
+
+Some default test accounts:  
+admin admin - Admin with full on permission  
+user user - Normal user with some default user permissions.  
+
 
 If you have any questions, feel free to open an issue or contact me by email!
